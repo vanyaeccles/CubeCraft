@@ -1,2 +1,0 @@
-cubecraft/Library
-cubecraft/ProjectSettings
