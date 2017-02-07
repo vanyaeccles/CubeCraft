@@ -1,3 +1,4 @@
 cubecraft/Library/
 cubecraft/Temp/
 *.sln
+*.csproj
