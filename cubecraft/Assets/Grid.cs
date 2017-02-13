@@ -8,9 +8,16 @@ public class Grid : MonoBehaviour {
     public int size = 4;
     public float offset = 1.0f;
 
+    LineRenderer lineRenderer;
+    private Vector2[] linePoints;
+
     void Awake()
     {
         grid = new Vector2 [size,size];
+
+        linePoints = new Vector2[size*size*4];
+
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
 	// Use this for initialization
@@ -20,8 +27,13 @@ public class Grid : MonoBehaviour {
             for(int j = 0; j < size; j++)
             {
                 grid[i,j] = new Vector2(i*offset,j*offset);
+
+                
             }
         }
+
+
+
 	}
 	
 
@@ -29,4 +41,9 @@ public class Grid : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void Render()
+    {
+
+    }
 }
