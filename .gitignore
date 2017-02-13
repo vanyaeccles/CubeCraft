@@ -3,3 +3,4 @@ cubecraft/Temp/
 *.sln
 *.csproj
 *.userprefs
+*.suo
