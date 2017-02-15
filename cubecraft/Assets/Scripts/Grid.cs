@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour {
 
-    private Vector2[,] grid;
+    public Tile[,] grid;
     private Vector3[,] gridVertices;
     public int size = 1;
     public float offset = 1.0f;
@@ -12,17 +12,27 @@ public class Grid : MonoBehaviour {
     LineRenderer lineRenderer;
     private Vector3[] linePoints;
     private int linePointsSize = 0;
+
+    private GameObject cube; 
+    private GameObject solCube;
     
 
     void Awake()
     {
-        grid = new Vector2 [size,size];
+        grid = new Tile [size,size];
+        
+
+        cube = GameObject.Find("Player Controlled Cube");
+        solCube = GameObject.Find("Puzzle Cube");
 
         gridVertices = new Vector3[size + 1, size + 1];
         linePointsSize = 4 + size * 2 + (size % 2 == 0 ? 1 : 0)+1+size*2;
         linePoints = new Vector3[linePointsSize];
 
         lineRenderer = GetComponent<LineRenderer>();
+
+
+
     }
 
 	// Use this for initialization
@@ -31,9 +41,10 @@ public class Grid : MonoBehaviour {
         {
             for (int j = 0; j < size; j++)
             {
-                grid[i, j] = new Vector2(i * offset, j * offset);
+                grid[i, j] = new Tile(new Vector3(i * offset,0, j * offset), false);
             }
         }
+
         Vector3 startingPoint = new Vector3(-offset * 0.5f,0, -offset * 0.5f);
         for( int i = 0; i < size + 1; i++)
         {
@@ -89,8 +100,10 @@ public class Grid : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        grid[(int)cube.transform.position.x, (int)cube.transform.position.z].isOccupied = false;
+        grid[(int)solCube.transform.position.x, (int)solCube.transform.position.z].isOccupied = true;
+        
+    }
 
     void Render()
     {

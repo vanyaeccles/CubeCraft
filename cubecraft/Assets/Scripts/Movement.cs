@@ -5,13 +5,14 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    //public Vector2[,] grid;
+    public Vector3 currentTile;
+    public Tile[,] grid;
 
     public Vector3 pos = new Vector3(0.0f, .5f, 0.0f);
     private bool moving = false;
 
     private int size;
-
+   
 
     // Use this for initialization
     void Start()
@@ -19,7 +20,9 @@ public class Movement : MonoBehaviour
         GameObject Plane = GameObject.Find("Plane");
         Grid Grid = Plane.GetComponent<Grid>();
         size = Grid.size;
+        grid = Grid.grid;
         //Debug.Log(size); 
+        currentTile = new Vector3(.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class Movement : MonoBehaviour
 
         if (moving)
         {
+            pos.y = .5f;
             transform.position = pos;
             moving = false;
         }
@@ -37,36 +41,48 @@ public class Movement : MonoBehaviour
 
     void CheckInput()
     {
+
+        
+
+
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //pos.x += 1;
-            if (pos.x <= size-2)
+            
+            if (grid[(int)currentTile.x, (int)currentTile.z].pos.x <= size-2 && !grid[(int)currentTile.x + 1 , (int)currentTile.z].isOccupied)
             {
-                pos += new Vector3(1.0f, 0.0f, 0.0f);
+                
+                currentTile.x += 1;
+                pos = grid[(int) currentTile.x, (int) currentTile.z].pos;
                 moving = true;
             }
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (pos.x >= 1.0f)
+            if (grid[(int)currentTile.x, (int)currentTile.z].pos.x >= 1.0f && !grid[(int)currentTile.x - 1, (int)currentTile.z].isOccupied)
             {
-                pos.x -= 1;
+                
+                currentTile.x -= 1;
+                pos = grid[(int)currentTile.x, (int)currentTile.z].pos;
                 moving = true;
             }
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (pos.z <= size-2)
+            if (grid[(int)currentTile.x, (int)currentTile.z].pos.z <= size-2 && !grid[(int)currentTile.x, (int)currentTile.z + 1].isOccupied)
             {
-                pos.z += 1;
+                
+                currentTile.z += 1;
+                pos = grid[(int)currentTile.x, (int)currentTile.z].pos;
                 moving = true;
             }
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (pos.z >= 1.0f)
+            if (grid[(int)currentTile.x, (int)currentTile.z].pos.z >= 1.0f && !grid[(int)currentTile.x, (int)currentTile.z - 1].isOccupied)
             {
-                pos.z -= 1;
+                
+                currentTile.z -= 1;
+                pos = grid[(int)currentTile.x, (int)currentTile.z].pos;
                 moving = true;
             }
         }
