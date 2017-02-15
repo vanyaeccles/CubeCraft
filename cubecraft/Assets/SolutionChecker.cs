@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SolutionChecker : MonoBehaviour {
 
     public Vector3 correct;
     public Vector3 playerAnswer;
+
+    string timeScore;
 
 	// Use this for initialization
 	void Start () {
@@ -24,11 +28,15 @@ public class SolutionChecker : MonoBehaviour {
           
             if (playerAnswer == correct)
             {
-                Debug.Log("You Win");
+                timeScore = GameObject.Find("TimerText").GetComponent<Text>().text;
+
+                Debug.Log("Correct Solution! Time: " + timeScore);
+                //Tell the timer to stop
+                SendMessage("Finish");
             }
             else
             {
-                Debug.Log("Try again.");
+                Debug.Log("Try again!");
             }
 
         }
