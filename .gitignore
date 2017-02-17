@@ -4,3 +4,5 @@ cubecraft/Temp/
 *.csproj
 *.userprefs
 *.suo
+cubecraft/Assets/moveCtest.cs
+cubecraft/Assets/moveCtest.cs.meta
