@@ -2,9 +2,9 @@ Initialize engine version: 5.5.1f1 (88d00a7498cd)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GT 635M (ID=0xde3)
-    Vendor:   NVIDIA
-    VRAM:     978 MB
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     848 MB
     Driver:   21.21.13.7654
 Begin MonoManager ReloadAssembly
 Platform assembly: D:\cubecraft\cubecraft\CubeCraft_Data\Managed\UnityEngine.dll (this message is harmless)
@@ -17,7 +17,7 @@ Platform assembly: D:\cubecraft\cubecraft\CubeCraft_Data\Managed\UnityEngine.Net
 Loading D:\cubecraft\cubecraft\CubeCraft_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\cubecraft\cubecraft\CubeCraft_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading D:\cubecraft\cubecraft\CubeCraft_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.052 seconds
+- Completed reload, in  0.094 seconds
 Platform assembly: D:\cubecraft\cubecraft\CubeCraft_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\cubecraft\cubecraft\CubeCraft_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
@@ -25,18 +25,23 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.155320 ms
+UnloadTime: 1.647042 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: b50 -> priority: 1 
+  Thread -> id: 1d34 -> priority: 1 
 start new game!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.506051 ms
+UnloadTime: 5.828691 ms
 
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 265.
-Total: 0.237285 ms (FindLiveObjects: 0.023400 ms CreateObjectMapping: 0.016010 ms MarkObjects: 0.177348 ms  DeleteObjects: 0.012726 ms)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 411.
+Total: 0.310770 ms (FindLiveObjects: 0.023400 ms CreateObjectMapping: 0.014779 ms MarkObjects: 0.247138 ms  DeleteObjects: 0.004515 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UIHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
 UnityEngine.Vector3[,]
  
