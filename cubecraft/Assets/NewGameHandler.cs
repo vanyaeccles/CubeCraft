@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class NewGameHandler: MonoBehaviour {
+
+
+
     public Button StartNewGameButton;
 	// Use this for initialization
 	void Start () {
