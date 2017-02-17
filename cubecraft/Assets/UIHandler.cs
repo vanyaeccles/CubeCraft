@@ -11,13 +11,16 @@ public class UIHandler : MonoBehaviour {
     public GameObject MenuPanel;
     public GameObject TimerPanel;
     public GameObject ConfirmPanel;
+    public GameObject WinPanel;
 
 
     public Button RestartButton;
     public Button ConfirmButton;
     public Button CancelButton;
     public Button BackButton;
-    
+    public Button WinBackButton;
+    public Button WinRestartButton;
+    public Button WinContinueButton;
 
 
     // Use this for initialization
@@ -26,22 +29,38 @@ public class UIHandler : MonoBehaviour {
         MenuPanel = GameObject.Find("MenuPanel");
         TimerPanel = GameObject.Find("TimerPanel");
         ConfirmPanel = GameObject.Find("ConfirmPanel");
+        WinPanel = GameObject.Find("WinPanel");
+
+        CancelButton = GameObject.Find("CancelButton").GetComponent<Button>();
+        BackButton = GameObject.Find("BackButton").GetComponent<Button>();
+        ConfirmButton = GameObject.Find("ConfirmButton").GetComponent<Button>();
+        RestartButton = GameObject.Find("RestartButton").GetComponent<Button>();
+
+        WinBackButton = GameObject.Find("WinBackButton").GetComponent<Button>();
+        WinRestartButton = GameObject.Find("WinRestartButton").GetComponent<Button>();
+        WinContinueButton = GameObject.Find("WinContinueButton").GetComponent<Button>();
+        
+
 
         InitialiseUI();
 
 
-        //Buttons
-        Button restartbtn = RestartButton.GetComponent<Button>();
-        Button confirmbtn = ConfirmButton.GetComponent<Button>();
-        Button cancelbtn = CancelButton.GetComponent<Button>();
-        Button backbtn = BackButton.GetComponent<Button>();
+        ////Buttons
+        //Button restartbtn = RestartButton.GetComponent<Button>();
+        //Button confirmbtn = ConfirmButton.GetComponent<Button>();
+        //Button cancelbtn = CancelButton.GetComponent<Button>();
+        //Button backbtn = BackButton.GetComponent<Button>();
 
 
 
-        restartbtn.onClick.AddListener(RestartPress);
-        confirmbtn.onClick.AddListener(ConfirmPress);
-        cancelbtn.onClick.AddListener(CancelPress);
-        backbtn.onClick.AddListener(BackPress);
+        RestartButton.onClick.AddListener(RestartPress);
+        ConfirmButton.onClick.AddListener(ConfirmPress);
+        CancelButton.onClick.AddListener(CancelPress);
+        BackButton.onClick.AddListener(BackPress);
+
+        WinBackButton.onClick.AddListener(BackPress);
+        WinRestartButton.onClick.AddListener(RestartPress);
+        WinContinueButton.onClick.AddListener(CancelPress);
     }
 
     void InitialiseUI()
@@ -59,6 +78,7 @@ public class UIHandler : MonoBehaviour {
         MenuPanel.SetActive(false);
         TimerPanel.SetActive(false);
         ConfirmPanel.SetActive(false);
+        WinPanel.SetActive(false);
     }
 
     void RestartPress()
@@ -70,7 +90,13 @@ public class UIHandler : MonoBehaviour {
     void ConfirmPress()
     {
         ShutDownAll();
+        // InitialiseUI();
+        //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
+        SceneManager.LoadScene("GameplayScene");
+        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
+        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().finished = false;
 
+        //Debug.Log("rest");
         //Back to main menu
     }
 
@@ -84,10 +110,9 @@ public class UIHandler : MonoBehaviour {
     void BackPress()
     {
         ShutDownAll();
-
+        SceneManager.LoadScene("StartScene");
         // Do something else
     }
-
 
 
     // Update is called once per frame

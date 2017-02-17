@@ -33,6 +33,7 @@ public class SolutionChecker : MonoBehaviour {
                 Debug.Log("Correct Solution! Time: " + timeScore);
                 //Tell the timer to stop
                 SendMessage("Finish");
+                GameObject.Find("UIController").GetComponent<UIHandler>().WinPanel.SetActive(true);
             }
             else
             {
