@@ -3,34 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Problem : MonoBehaviour {
+public class Problem{
     [SerializeField]
     int dimension;
+
     [SerializeField]
     tileDataArray[] tiles;
-   // [SerializeField]
-	// Use this for initialization
-	void Start () {
-        tiles = new tileDataArray[1];
-        tiles[0].row = new tileData[1];
-        Save();
-	}
-    string jsonStr;
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    void Save(){
-        string json = JsonUtility.ToJson(this);
-        Debug.Log(json);
+    public void Save(string filename){
+        string json_str = JsonUtility.ToJson(this);
+        string path = Application.persistentDataPath + "/"+filename;
+        System.IO.File.WriteAllText(path, json_str);
+        Debug.Log("path is " + path);
     }
 
-    void Load()
+    public static Problem Load(string filename)
     {
-        //JsonUtility.FromJson<Problem>(){
-
-        //}
+         string path = Application.persistentDataPath+"/"+filename;
+         string json_str=System.IO.File.ReadAllText(path);
+         Debug.Log("json string is " + json_str);
+         return JsonUtility.FromJson<Problem>(json_str);
     }
 
     [System.Serializable]
