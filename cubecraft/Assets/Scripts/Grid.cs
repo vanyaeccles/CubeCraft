@@ -101,7 +101,13 @@ public class Grid : MonoBehaviour {
 	void Update () {
         grid[(int)cube.transform.position.x, (int)cube.transform.position.z].isOccupied = false;
         grid[(int)solCube.transform.position.x, (int)solCube.transform.position.z].isOccupied = true;
-        
+
+        //Debug functionality//
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            //print status of grid[0,0] on console
+            Debug.Log("grid[0,0] (downleft corner is isOccupied:" + grid[0, 0].isOccupied.ToString() + " position:" + grid[0, 0].pos);
+        }
     }
 
     void Render()
