@@ -20,7 +20,6 @@ public class Grid : MonoBehaviour {
     void Awake()
     {
         grid = new Tile [size,size];
-        
 
         cube = GameObject.Find("Player Controlled Cube");
         solCube = GameObject.Find("Puzzle Cube");
