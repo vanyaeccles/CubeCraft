@@ -92,7 +92,7 @@ public class UIHandler : MonoBehaviour {
         ShutDownAll();
         // InitialiseUI();
         //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
-        SceneManager.LoadScene("GameplayScene");
+        SceneManager.LoadScene("VanDan GameplaySceneCopy");
         GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
         GameObject.Find("Player Controlled Cube").GetComponent<Timer>().finished = false;
 

@@ -31,8 +31,6 @@ public class Movement : MonoBehaviour
         currentTile = new Vector3(.0f, 0.0f, 0.0f);
 
         GameObject PuzzleCubes = GameObject.Find("Puzzle Cubes");
-        CubesHandler cubesHandler = PuzzleCubes.GetComponent<CubesHandler>();
-        Cubes = cubesHandler.Cubes;
     }
 
     // Update is called once per frame

@@ -114,8 +114,8 @@ public class Grid : MonoBehaviour {
         //Debug functionality//
         //if (Input.GetKeyDown(KeyCode.P))
         //{
-            //print status of grid[0,0] on console
-            //Debug.Log("grid[0,0] (downleft corner is isOccupied:" + grid[0, 0].isOccupied.ToString() + " position:" + grid[0, 0].pos);
+        //    print status of grid[0, 0] on console
+        //    Debug.Log("grid[0,0] (downleft corner is isOccupied:" + grid[0, 0].isOccupied.ToString() + " position:" + grid[0, 0].gameObject.transform.pos);
         //}
     }
 
