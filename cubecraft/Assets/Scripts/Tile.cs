@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class Tile{
 
-    public Vector3 pos;
+    //public Vector3 pos;
+    public GameObject gameObject;
     public bool isOccupied;
 	
-    public Tile(Vector3 Pos, bool IsOccupied)
+    public Tile(GameObject gameObject, bool IsOccupied)
     {
-        pos = Pos;
+        this.gameObject = gameObject;
         isOccupied = IsOccupied;
+    }
+
+
+    public void SetActive(bool flag)
+    {
+        isOccupied = flag;
+        gameObject.SetActive(flag);
+    }
+
+    public void SetGameObject(bool flag)
+    {
+        gameObject.SetActive(flag);
+    }
+
+
+    public void setOccupied(bool flag)
+    {
+        isOccupied = flag;
     }
 
 }

@@ -23,6 +23,7 @@ public class SolutionChecker : MonoBehaviour {
         Movement movement = Player.GetComponent<Movement>();
         playerAnswer = movement.pos;
 
+
         if (Input.GetKeyDown(KeyCode.H))
         {
           
@@ -39,7 +40,25 @@ public class SolutionChecker : MonoBehaviour {
             {
                 Debug.Log("Try again!");
             }
+            checkSolution();
+        }
+    }
 
+
+
+    void checkSolution()
+    {
+        if (playerAnswer == correct)
+        {
+            timeScore = GameObject.Find("TimerText").GetComponent<Text>().text;
+
+            Debug.Log("Correct Solution! Time: " + timeScore);
+            //Tell the timer to stop
+            SendMessage("Finish");
         }
+        else
+        {
+            Debug.Log("Try again!");
         }
+    }
 }

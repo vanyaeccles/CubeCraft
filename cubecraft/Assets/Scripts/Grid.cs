@@ -15,7 +15,10 @@ public class Grid : MonoBehaviour {
 
     private GameObject cube; 
     private GameObject solCube;
-    
+
+    private List<PlacedCube> Cubes;
+
+    public GameObject cubePrefab;
 
     void Awake()
     {
@@ -31,7 +34,6 @@ public class Grid : MonoBehaviour {
         lineRenderer = GetComponent<LineRenderer>();
 
 
-
     }
 
 	// Use this for initialization
@@ -40,7 +42,10 @@ public class Grid : MonoBehaviour {
         {
             for (int j = 0; j < size; j++)
             {
-                grid[i, j] = new Tile(new Vector3(i * offset,0, j * offset), false);
+                GameObject gameObject = Instantiate(cubePrefab,new Vector3(i*offset,offset*0.5f,j*offset),Quaternion.identity);
+                gameObject.SetActive(false);
+                grid[i, j] = new Tile(gameObject, false);
+                //grid[i, j] = new Tile(new Vector3(i * offset,0, j * offset), false);
             }
         }
 
@@ -94,21 +99,26 @@ public class Grid : MonoBehaviour {
         lineRenderer.SetPositions(linePoints);
 
 
-	}
+        //Give it access to the cubes
+        GameObject PuzzleCubes = GameObject.Find("Puzzle Cubes");
+        
+    }
 	
+
 
 	// Update is called once per frame
 	void Update () {
-        grid[(int)cube.transform.position.x, (int)cube.transform.position.z].isOccupied = false;
-        grid[(int)solCube.transform.position.x, (int)solCube.transform.position.z].isOccupied = true;
+        //grid[(int)cube.transform.position.x, (int)cube.transform.position.z].isOccupied = false;
+        //grid[(int)solCube.transform.position.x, (int)solCube.transform.position.z].isOccupied = true;
 
         //Debug functionality//
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
             //print status of grid[0,0] on console
-            Debug.Log("grid[0,0] (downleft corner is isOccupied:" + grid[0, 0].isOccupied.ToString() + " position:" + grid[0, 0].pos);
-        }
+            //Debug.Log("grid[0,0] (downleft corner is isOccupied:" + grid[0, 0].isOccupied.ToString() + " position:" + grid[0, 0].pos);
+        //}
     }
+
 
     void Render()
     {
