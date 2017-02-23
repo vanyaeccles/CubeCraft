@@ -51,6 +51,8 @@ public class Movement : MonoBehaviour
 
     }
 
+
+
     void CheckMovementInput()
     {
 
@@ -126,9 +128,96 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+        if (!holdingCube)
+        {
+            if (grid[(int)currentTile.x, (int)currentTile.z].isOccupied)
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
+            else
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
+        }
     }
 
 
+    public void GrabRelease()
+    {
+        bool cubeAtPos = grid[(int)pos.x, (int)pos.z].isOccupied;
+        if (holdingCube)
+        {
+            if (!cubeAtPos)
+            {
+                Debug.Log("You place the currently grabbed cube.");
+                holdingCube = false;
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
+                grid[(int)pos.x, (int)pos.z].SetActive(true);
+            }
+
+            if (cubeAtPos)
+            {
+                Debug.Log("There is already a cube at this position!");
+            }
+
+        }
+        else
+        {
+            if (cubeAtPos)
+            {
+                Debug.Log("You grab the cube at this position");
+                holdingCube = true;
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
+                //remove the placedCube from the cubehandler list, set position to ghostcube position
+                grid[(int)currentTile.x, (int)currentTile.z].setOccupied(false);
+
+            }
+            else if (!cubeAtPos)
+            {
+                Debug.Log("There is nothing to grab!");
+            }
+        }
+    }
+
+    public void AddDelete()
+    {
+        bool cubeAtPos = grid[(int)pos.x, (int)pos.z].isOccupied;
+       // GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
+        if (holdingCube)
+        {
+            Debug.Log("You remove the cube that you were holding.");
+           // GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
+            grid[(int)pos.x, (int)pos.z].SetActive(false);
+            holdingCube = false;
+            GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
+            //if (!cubeAtPos)
+            //{
+            //    Debug.Log("You place the currently grabbed cube.");
+            //    holdingCube = false;
+            //    grid[(int)pos.x, (int)pos.z].SetActive(true);
+            //}
+
+            //if (cubeAtPos)
+            //{
+            //    Debug.Log("There is already a cube at this position!");
+            //}
+
+        }
+
+        else if (!holdingCube)
+        {
+            if (!cubeAtPos)
+            {
+                Debug.Log("You add a new cube at this position.");
+                grid[(int)pos.x, (int)pos.z].SetActive(true);
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
+            }
+            else if (cubeAtPos)
+            {
+                Debug.Log("You remove the cube at this position.");
+
+                grid[(int)pos.x, (int)pos.z].SetActive(false);
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
+            }
+        }
+
+    }
     void CheckOtherCommandInput()
     {
 
@@ -138,26 +227,27 @@ public class Movement : MonoBehaviour
             // Grab/Release - Press G
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if(holdingCube)
-            {
-                Debug.Log("Already have a grabbed cube.");
-            }
+            GrabRelease();
+            //if(holdingCube)
+            //{
+            //    Debug.Log("Already have a grabbed cube.");
+            //}
 
-            if(!holdingCube)
-            {
-                if (cubeAtPos)
-                {
-                    Debug.Log("You grab the cube at this position");
-                    holdingCube = true;
-                    //remove the placedCube from the cubehandler list, set position to ghostcube position
-                    grid[(int)currentTile.x, (int)currentTile.z].setOccupied(false);
+            //if(!holdingCube)
+            //{
+            //    if (cubeAtPos)
+            //    {
+            //        Debug.Log("You grab the cube at this position");
+            //        holdingCube = true;
+            //        //remove the placedCube from the cubehandler list, set position to ghostcube position
+            //        grid[(int)currentTile.x, (int)currentTile.z].setOccupied(false);
 
-                }
-                else if (!cubeAtPos)
-                {
-                    Debug.Log("There is nothing to grab!");
-                }
-            }    
+            //    }
+            //    else if (!cubeAtPos)
+            //    {
+            //        Debug.Log("There is nothing to grab!");
+            //    }
+            //}    
         }
 
 
@@ -165,36 +255,37 @@ public class Movement : MonoBehaviour
         //Add/Remove - Press N
         if (Input.GetKeyDown(KeyCode.N))
         {
-            if(holdingCube)
-            {
-                if(!cubeAtPos)
-                {
-                    Debug.Log("You place the currently grabbed cube.");
-                    holdingCube = false;
-                    grid[(int)pos.x, (int)pos.z].SetActive(true);
-                }
+            AddDelete();
+            //if(holdingCube)
+            //{
+            //    if(!cubeAtPos)
+            //    {
+            //        Debug.Log("You place the currently grabbed cube.");
+            //        holdingCube = false;
+            //        grid[(int)pos.x, (int)pos.z].SetActive(true);
+            //    }
 
-                if(cubeAtPos)
-                {
-                    Debug.Log("There is already a cube at this position!");
-                }
+            //    if(cubeAtPos)
+            //    {
+            //        Debug.Log("There is already a cube at this position!");
+            //    }
 
-            }
+            //}
 
-            else if(!holdingCube)
-            {
-                if (!cubeAtPos)
-                {
-                    Debug.Log("You add a new cube at this position.");
-                    grid[(int)pos.x, (int)pos.z].SetActive(true);
-                }
-                else if (cubeAtPos)
-                {
-                    Debug.Log("You remove the cube at this position.");
+            //else if(!holdingCube)
+            //{
+            //    if (!cubeAtPos)
+            //    {
+            //        Debug.Log("You add a new cube at this position.");
+            //        grid[(int)pos.x, (int)pos.z].SetActive(true);
+            //    }
+            //    else if (cubeAtPos)
+            //    {
+            //        Debug.Log("You remove the cube at this position.");
 
-                    grid[(int)pos.x, (int)pos.z].SetActive(false);
-                }
-            }
+            //        grid[(int)pos.x, (int)pos.z].SetActive(false);
+            //    }
+            //}
         }
     }
 

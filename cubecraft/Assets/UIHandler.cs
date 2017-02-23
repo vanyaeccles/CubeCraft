@@ -25,6 +25,11 @@ public class UIHandler : MonoBehaviour {
     public Button WinRestartButton;
     public Button WinContinueButton;
 
+    public Button GrabButton;
+    public Button ReleaseButton;
+    public Button AddButton;
+    public Button DeleteButton;
+
 
    
 
@@ -49,8 +54,12 @@ public class UIHandler : MonoBehaviour {
         WinBackButton = GameObject.Find("WinBackButton").GetComponent<Button>();
         WinRestartButton = GameObject.Find("WinRestartButton").GetComponent<Button>();
         WinContinueButton = GameObject.Find("WinContinueButton").GetComponent<Button>();
-        
 
+        GrabButton = GameObject.Find("GrabButton").GetComponent<Button>();
+        ReleaseButton = GameObject.Find("ReleaseButton").GetComponent<Button>();
+
+        AddButton = GameObject.Find("CreateNewButton").GetComponent<Button>();
+        DeleteButton = GameObject.Find("DeleteButton").GetComponent<Button>();
 
         InitialiseUI();
 
@@ -71,6 +80,12 @@ public class UIHandler : MonoBehaviour {
         WinBackButton.onClick.AddListener(BackPress);
         WinRestartButton.onClick.AddListener(RestartPress);
         WinContinueButton.onClick.AddListener(CancelPress);
+
+        GrabButton.onClick.AddListener(GameObject.Find("Player Controlled Cube").GetComponent<Movement>().GrabRelease);
+        ReleaseButton.onClick.AddListener(GameObject.Find("Player Controlled Cube").GetComponent<Movement>().GrabRelease);
+
+        AddButton.onClick.AddListener(GameObject.Find("Player Controlled Cube").GetComponent<Movement>().AddDelete);
+        DeleteButton.onClick.AddListener(GameObject.Find("Player Controlled Cube").GetComponent<Movement>().AddDelete);
     }
 
     void InitialiseUI()
@@ -106,7 +121,7 @@ public class UIHandler : MonoBehaviour {
         ShutDownAll();
         // InitialiseUI();
         //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
-        SceneManager.LoadScene("VanDan GameplaySceneCopy");
+        SceneManager.LoadScene("GameplayScene");
         GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
         GameObject.Find("Player Controlled Cube").GetComponent<Timer>().finished = false;
 
@@ -136,14 +151,26 @@ public class UIHandler : MonoBehaviour {
 
 
 
-    void switch2GrubMode()
+    public void switch2GrubMode()
     {
         GrabMode.SetActive(true);
         TileMode.SetActive(false);
     }
-    void switch2TileMode()
+    public void switch2TileMode()
     {
         GrabMode.SetActive(false);
         TileMode.SetActive(true);
+    }
+
+    public void switch2TileModeAdd()
+    {
+        switch2TileMode();
+        AddButton.GetComponentInChildren<Text>().text = "ADD";
+    }
+
+    public void switch2TileModeDelete()
+    {
+        switch2TileMode();
+        AddButton.GetComponentInChildren<Text>().text = "DELETE";
     }
 }
