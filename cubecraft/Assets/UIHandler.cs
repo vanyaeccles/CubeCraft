@@ -12,7 +12,10 @@ public class UIHandler : MonoBehaviour {
     public GameObject TimerPanel;
     public GameObject ConfirmPanel;
     public GameObject WinPanel;
-
+    public GameObject DynamicPanel;
+    // GrubMode, TildMOde are subPanel of DynamicPanel
+    public GameObject GrabMode;
+    public GameObject TileMode;
 
     public Button RestartButton;
     public Button ConfirmButton;
@@ -23,6 +26,9 @@ public class UIHandler : MonoBehaviour {
     public Button WinContinueButton;
 
 
+   
+
+
     // Use this for initialization
     void Start () {
 
@@ -30,11 +36,15 @@ public class UIHandler : MonoBehaviour {
         TimerPanel = GameObject.Find("TimerPanel");
         ConfirmPanel = GameObject.Find("ConfirmPanel");
         WinPanel = GameObject.Find("WinPanel");
+        DynamicPanel = GameObject.Find("DynamicPanel");
+        GrabMode = GameObject.Find("GrabMode");
+        TileMode = GameObject.Find("TileMode");
 
         CancelButton = GameObject.Find("CancelButton").GetComponent<Button>();
         BackButton = GameObject.Find("BackButton").GetComponent<Button>();
         ConfirmButton = GameObject.Find("ConfirmButton").GetComponent<Button>();
         RestartButton = GameObject.Find("RestartButton").GetComponent<Button>();
+       
 
         WinBackButton = GameObject.Find("WinBackButton").GetComponent<Button>();
         WinRestartButton = GameObject.Find("WinRestartButton").GetComponent<Button>();
@@ -70,6 +80,9 @@ public class UIHandler : MonoBehaviour {
         MenuPanel.SetActive(true);
         TimerPanel.SetActive(true);
         ConfirmPanel.SetActive(false);
+
+        GrabMode.SetActive(false);
+        TileMode.SetActive(true);
     }
 
     //DeActivates all UI elements
@@ -84,6 +97,7 @@ public class UIHandler : MonoBehaviour {
     void RestartPress()
     {
         ShutDownAll();
+        Debug.Log("???");
         ConfirmPanel.SetActive(true);
     }
 
@@ -119,4 +133,17 @@ public class UIHandler : MonoBehaviour {
     void Update () {
 
 	}
+
+
+
+    void switch2GrubMode()
+    {
+        GrabMode.SetActive(true);
+        TileMode.SetActive(false);
+    }
+    void switch2TileMode()
+    {
+        GrabMode.SetActive(false);
+        TileMode.SetActive(true);
+    }
 }
