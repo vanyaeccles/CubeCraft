@@ -6,12 +6,12 @@ public class Movement : MonoBehaviour
 {
 
     public Vector3 currentTile;
-    public Tile[,] grid;
+    public Grid grid;
 
     public Vector3 pos = new Vector3(0.0f, .5f, 0.0f);
     private bool moving = false;
 
-    private int size;
+    //private int size;
 
     private CubesHandler cubesHandler;
     private GameObject PuzzleCubes;
@@ -24,9 +24,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         GameObject Plane = GameObject.Find("Plane");
-        Grid Grid = Plane.GetComponent<Grid>();
-        size = Grid.size;
-        grid = Grid.grid;
+        Grid grid = Plane.GetComponent<Grid>();
+       // grid.size = 6;
+        //size = grid.size;
         //Debug.Log(size); 
         currentTile = new Vector3(.0f, 0.0f, 0.0f);
 
@@ -36,8 +36,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        CheckMovementInput();
+       // if(Input.anyKeyDown)
+            CheckMovementInput();
 
         if (moving)
         {
@@ -46,8 +46,8 @@ public class Movement : MonoBehaviour
             moving = false;
         }
 
-       
-        CheckOtherCommandInput();
+        //if (Input.anyKeyDown)
+            CheckOtherCommandInput();
 
     }
 
@@ -60,77 +60,77 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
 
-            if (grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.x <= size - 2 && !(grid[(int)currentTile.x + 1, (int)currentTile.z].isOccupied && holdingCube))
+            if (grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.x <= grid.size - 2 && !(grid.grid[(int)currentTile.x + 1, (int)currentTile.z].isOccupied && holdingCube))
             {
                 if(holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
                 }
 
                 currentTile.x += 1;
-                pos = grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
+                pos = grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
                 moving = true;
 
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
                 }
             }
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.x >= 1.0f && !(grid[(int)currentTile.x - 1, (int)currentTile.z].isOccupied && holdingCube))
+            if (grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.x >= 1.0f && !(grid.grid[(int)currentTile.x - 1, (int)currentTile.z].isOccupied && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
                 }
                 currentTile.x -= 1;
-                pos = grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
+                pos = grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
                 moving = true;
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
                 }
             }
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.z <= size - 2 && !(grid[(int)currentTile.x, (int)currentTile.z + 1].isOccupied && holdingCube))
+            if (grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.z <= grid.size - 2 && !(grid.grid[(int)currentTile.x, (int)currentTile.z + 1].isOccupied && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
                 }
                 currentTile.z += 1;
-                pos = grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
+                pos = grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
                 moving = true;
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
                 }
             }
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.z >= 1.0f && !(grid[(int)currentTile.x, (int)currentTile.z - 1].isOccupied && holdingCube))
+            if (grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position.z >= 1.0f && !(grid.grid[(int)currentTile.x, (int)currentTile.z - 1].isOccupied && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetActive(false);
                 }
                 currentTile.z -= 1;
-                pos = grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
+                pos = grid.grid[(int)currentTile.x, (int)currentTile.z].gameObject.transform.position;
                 moving = true;
                 if (holdingCube)
                 {
-                    grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
+                    grid.grid[(int)currentTile.x, (int)currentTile.z].SetGameObject(true);
                 }
             }
         }
         if (!holdingCube)
         {
-            if (grid[(int)currentTile.x, (int)currentTile.z].isOccupied)
+            if (grid.grid[(int)currentTile.x, (int)currentTile.z].isOccupied)
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
             else
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
@@ -140,7 +140,7 @@ public class Movement : MonoBehaviour
 
     public void GrabRelease()
     {
-        bool cubeAtPos = grid[(int)pos.x, (int)pos.z].isOccupied;
+        bool cubeAtPos = grid.grid[(int)pos.x, (int)pos.z].isOccupied;
         if (holdingCube)
         {
             if (!cubeAtPos)
@@ -148,7 +148,7 @@ public class Movement : MonoBehaviour
                 Debug.Log("You place the currently grabbed cube.");
                 holdingCube = false;
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
-                grid[(int)pos.x, (int)pos.z].SetActive(true);
+                grid.grid[(int)pos.x, (int)pos.z].SetActive(true);
             }
 
             if (cubeAtPos)
@@ -165,7 +165,7 @@ public class Movement : MonoBehaviour
                 holdingCube = true;
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
                 //remove the placedCube from the cubehandler list, set position to ghostcube position
-                grid[(int)currentTile.x, (int)currentTile.z].setOccupied(false);
+                grid.grid[(int)currentTile.x, (int)currentTile.z].setOccupied(false);
 
             }
             else if (!cubeAtPos)
@@ -177,13 +177,13 @@ public class Movement : MonoBehaviour
 
     public void AddDelete()
     {
-        bool cubeAtPos = grid[(int)pos.x, (int)pos.z].isOccupied;
+        bool cubeAtPos = grid.grid[(int)pos.x, (int)pos.z].isOccupied;
        // GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
         if (holdingCube)
         {
             Debug.Log("You remove the cube that you were holding.");
            // GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
-            grid[(int)pos.x, (int)pos.z].SetActive(false);
+            grid.grid[(int)pos.x, (int)pos.z].SetActive(false);
             holdingCube = false;
             GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
             //if (!cubeAtPos)
@@ -205,14 +205,14 @@ public class Movement : MonoBehaviour
             if (!cubeAtPos)
             {
                 Debug.Log("You add a new cube at this position.");
-                grid[(int)pos.x, (int)pos.z].SetActive(true);
+                grid.grid[(int)pos.x, (int)pos.z].SetActive(true);
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
             }
             else if (cubeAtPos)
             {
                 Debug.Log("You remove the cube at this position.");
 
-                grid[(int)pos.x, (int)pos.z].SetActive(false);
+                grid.grid[(int)pos.x, (int)pos.z].SetActive(false);
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
             }
         }
@@ -221,7 +221,7 @@ public class Movement : MonoBehaviour
     void CheckOtherCommandInput()
     {
 
-        bool cubeAtPos = grid[(int)pos.x, (int)pos.z].isOccupied;
+        bool cubeAtPos = grid.grid[(int)pos.x, (int)pos.z].isOccupied;
 
 
             // Grab/Release - Press G
@@ -296,7 +296,7 @@ public class Movement : MonoBehaviour
     bool checkIsPositionFull()
     {
  
-        if (grid[(int)currentTile.x, (int)currentTile.z].isOccupied) return true;
+        if (grid.grid[(int)currentTile.x, (int)currentTile.z].isOccupied) return true;
         else return false;
 
      

@@ -47,19 +47,31 @@ public class Grid : MonoBehaviour {
 
     public void Resize(int size)
     {
+        //DeleteGrid();
         this.size = size;
         AllocateGrid(size);
         SetupGrid(size);
     }
-    //bool temp = false;
+
     void AllocateGrid(int size)
     {
-       // if(!temp)
+        //grid = null;
         grid = new Tile[size, size];
-        //temp = true;
         gridVertices = new Vector3[size + 1, size + 1];
         linePointsSize = 4 + size * 2 + (size % 2 == 0 ? 1 : 0) + 1 + size * 2;
         linePoints = new Vector3[linePointsSize];
+    }
+
+    void DeleteGrid()
+    {
+        for(int i = 0; i < size; i++)
+        {
+            for(int j = 0; j < size; j++)
+            {
+                Destroy(grid[i, j].gameObject);
+                grid[i, j] = null;
+            }
+        }
     }
 
     void SetupGrid(int size)
