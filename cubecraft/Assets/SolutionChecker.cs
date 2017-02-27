@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+using Cube;
 public class SolutionChecker : MonoBehaviour {
 
     public Vector3 correct;
@@ -21,7 +21,7 @@ public class SolutionChecker : MonoBehaviour {
 
         GameObject Player = GameObject.Find("Player Controlled Cube");
         Movement movement = Player.GetComponent<Movement>();
-        playerAnswer = movement.pos;
+        playerAnswer = movement.GetPosition();
 
 
         if (Input.GetKeyDown(KeyCode.H))

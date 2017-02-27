@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cube;
 public class Levels : MonoBehaviour {
 
     // Use this for initialization
@@ -59,10 +59,10 @@ public class Levels : MonoBehaviour {
 
     public void CheckLevel1Solution()
     {
-        Debug.Log("Grid size is " + grid.size);
-        for (int i = 0; i < grid.size; i++)
+        Debug.Log("Grid size is " + grid.GetSize());
+        for (int i = 0; i < grid.GetSize(); i++)
         {
-            for (int j = 0; j < grid.size; j++)
+            for (int j = 0; j < grid.GetSize(); j++)
             {
                 if (i == 0 && (j == 0 || j == 1 || j == 2))
                 {
@@ -87,10 +87,10 @@ public class Levels : MonoBehaviour {
 
     public void CheckLevel2Solution()
     {
-        Debug.Log("Grid size is " + grid.size);
-        for (int i = 0; i < grid.size; i++)
+        Debug.Log("Grid size is " + grid.GetSize());
+        for (int i = 0; i < grid.GetSize(); i++)
         {
-            for (int j = 0; j < grid.size; j++)
+            for (int j = 0; j < grid.GetSize(); j++)
             {
                 if (i == 0 && (j == 0 || j == 1 || j == 2))
                 {
