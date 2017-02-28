@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using Cube;
+using Judge;
 public class UIHandler : MonoBehaviour {
 
 
@@ -123,8 +124,7 @@ public class UIHandler : MonoBehaviour {
         //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
         SceneManager.LoadScene("GameplayScene");
         GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
-        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().finished = false;
-
+        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().SetFinished(false);
         //Debug.Log("rest");
         //Back to main menu
     }
