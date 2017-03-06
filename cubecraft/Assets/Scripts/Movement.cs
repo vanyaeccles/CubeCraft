@@ -8,21 +8,23 @@ namespace Cube
     /*Movement.cs
      * This class implements the movements/actions of the ghost cube in the grid. For each action, there is a corresponding function call. 
      */
-    struct Vector2i
+    struct Vector3i
     {
         public int i;
         public int j;
-        public Vector2i(int i,int j)
+        public int k;
+        public Vector3i(int i,int j, int k)
         {
             this.i = i;
             this.j = j;
+            this.k = k;
         }
     };
 
     public class Movement : MonoBehaviour
     {
         //grid reference and ghost location in the grid
-        private Vector2i currentTile;
+        private Vector3i currentTile;
         private Grid grid;
 
         //logic control variables
@@ -30,12 +32,12 @@ namespace Cube
 
         void Awake()
         {
-            grid = GameObject.Find("Plane").GetComponent<Grid>(); //@TODO use tag instead of name
+            grid = GameObject.Find("Grid").GetComponent<Grid>(); //@TODO use tag instead of name
         }
 
         void Start()
         {
-            currentTile = new Vector2i(0, 0);
+            currentTile = new Vector3i(0, 0, 0);
         }
 
         // Update is called once per frame
@@ -46,11 +48,11 @@ namespace Cube
             {
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
             }
-            else if (grid.GetTile(currentTile.i, currentTile.j).GetIsOccupied())
+            else if (grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied())
             {
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
             }
-            else if (!grid.GetTile(currentTile.i, currentTile.j).GetIsOccupied())
+            else if (!grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied())
             {
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
             }
@@ -58,21 +60,22 @@ namespace Cube
 
         private void UpdatePosition()
         {
-            transform.position = grid.GetTile(currentTile.i,currentTile.j).GetGameObject().transform.position;
+           transform.position = grid.GetTile(currentTile.i,currentTile.j, currentTile.k).GetGameObject().transform.position;
         }
 
         public bool MoveRight()
         {
-            if(currentTile.i<grid.GetSize()-1&&!(grid.GetTile(currentTile.i+1,currentTile.j).GetIsOccupied()&&holdingCube))
+            
+            if (currentTile.i < grid.GetSize() - 1 && !(grid.GetTile(currentTile.i + 1, currentTile.j, currentTile.k).GetIsOccupied() && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 }
                 currentTile.i += 1;
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).GetGameObject().SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
                 return true;
@@ -82,16 +85,54 @@ namespace Cube
 
         public bool MoveLeft()
         {
-            if (currentTile.i > 0 && !(grid.GetTile(currentTile.i - 1, currentTile.j).GetIsOccupied() && holdingCube))
+            if (currentTile.i > 0 && !(grid.GetTile(currentTile.i - 1, currentTile.j, currentTile.k).GetIsOccupied() && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 }
                 currentTile.i -= 1;
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).GetGameObject().SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
+                }
+                UpdatePosition();
+                return true;
+            }
+            return false;
+        }
+
+        public bool MoveForward()
+        {
+            if (currentTile.k < grid.GetSize() - 1 && !(grid.GetTile(currentTile.i, currentTile.j, currentTile.k + 1).GetIsOccupied() && holdingCube))
+            {
+                if (holdingCube)
+                {
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
+                }
+                currentTile.k += 1;
+                if (holdingCube)
+                {
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
+                }
+                UpdatePosition();
+                return true;
+            }
+            return false;
+        }
+
+        public bool MoveBackward()
+        {
+            if (currentTile.k > 0 && !(grid.GetTile(currentTile.i, currentTile.j, currentTile.k -1).GetIsOccupied() && holdingCube))
+            {
+                if (holdingCube)
+                {
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
+                }
+                currentTile.k -= 1;
+                if (holdingCube)
+                {
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
                 return true;
@@ -101,16 +142,16 @@ namespace Cube
 
         public bool MoveUp()
         {
-            if (currentTile.j < grid.GetSize() - 1 && !(grid.GetTile(currentTile.i, currentTile.j + 1).GetIsOccupied() && holdingCube))
+            if (currentTile.j < grid.GetSize() - 1 && !(grid.GetTile(currentTile.i, currentTile.j + 1, currentTile.k).GetIsOccupied() && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 }
                 currentTile.j += 1;
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).GetGameObject().SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
                 return true;
@@ -120,16 +161,16 @@ namespace Cube
 
         public bool MoveDown()
         {
-            if (currentTile.j > 0 && !(grid.GetTile(currentTile.i, currentTile.j - 1).GetIsOccupied() && holdingCube))
+            if (currentTile.j > 0 && !(grid.GetTile(currentTile.i, currentTile.j - 1, currentTile.k).GetIsOccupied() && holdingCube))
             {
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 }
                 currentTile.j -= 1;
                 if (holdingCube)
                 {
-                    grid.GetTile(currentTile.i, currentTile.j).GetGameObject().SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
                 return true;
@@ -137,9 +178,10 @@ namespace Cube
             return false;
         }
 
+
         public void GrabRelease()
         {
-            bool cubeAtPos = grid.GetTile(currentTile.i, currentTile.j).GetIsOccupied();
+            bool cubeAtPos = grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied();
             if (holdingCube)
             {
                 if (!cubeAtPos)
@@ -147,7 +189,7 @@ namespace Cube
                     Debug.Log("You place the currently grabbed cube.");
                     holdingCube = false;
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(true);
                 }
 
                 if (cubeAtPos)
@@ -163,7 +205,7 @@ namespace Cube
                     holdingCube = true;
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
                     //remove the placedCube from the cubehandler list, set position to ghostcube position
-                    grid.GetTile(currentTile.i, currentTile.j).SetIsOccupied(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetIsOccupied(false);
 
                 }
                 else if (!cubeAtPos)
@@ -175,11 +217,11 @@ namespace Cube
 
         public void AddDelete()
         {
-            bool cubeAtPos = grid.GetTile(currentTile.i, currentTile.j).GetIsOccupied();
+            bool cubeAtPos = grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied();
             if (holdingCube)
             {
                 Debug.Log("You remove the cube that you were holding.");
-                grid.GetTile(currentTile.i, currentTile.j).SetActive(false);
+                grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 holdingCube = false;
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
             }
@@ -189,14 +231,14 @@ namespace Cube
                 if (!cubeAtPos)
                 {
                     Debug.Log("You add a new cube at this position.");
-                    grid.GetTile(currentTile.i, currentTile.j).SetActive(true);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(true);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
                 }
                 else if (cubeAtPos)
                 {
                     Debug.Log("You remove the cube at this position.");
 
-                    grid.GetTile(currentTile.i,currentTile.j).SetActive(false);
+                    grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
                 }
             }

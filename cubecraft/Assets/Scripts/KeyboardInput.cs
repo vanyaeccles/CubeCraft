@@ -21,11 +21,11 @@ namespace KeyInput
         {
             if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.UpArrow))
             {
-                movement.MoveUp();
+                movement.MoveForward();
             }
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                movement.MoveDown();
+                movement.MoveBackward();
             }
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -34,6 +34,14 @@ namespace KeyInput
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 movement.MoveRight();
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                movement.MoveUp();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                movement.MoveDown();
             }
         }
     }

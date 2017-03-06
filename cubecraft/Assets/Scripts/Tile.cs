@@ -15,17 +15,31 @@ namespace Cube
         private GameObject gameObject;
         private bool isOccupied;
 
+        private Material emptyMaterial;
+        private Material occupiedMaterial;
+
         public Tile(GameObject gameObject, bool isOccupied)
         {
             this.gameObject = gameObject;
             this.isOccupied = isOccupied;
+
+            emptyMaterial = Resources.Load("Materials/EmptyTile") as Material;
+            occupiedMaterial = Resources.Load("Materials/OccupiedTile") as Material;
+            gameObject.GetComponent<Renderer>().material = emptyMaterial;
         }
 
 
         public void SetActive(bool flag)
         {
+            if (flag)
+            {
+                gameObject.GetComponent<Renderer>().material = occupiedMaterial;
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().material = emptyMaterial;
+            }
             isOccupied = flag;
-            gameObject.SetActive(flag);
         }
 
         public void SetGameObject(GameObject gameObject)
@@ -48,7 +62,7 @@ namespace Cube
             return isOccupied;
         }
 
-       
+
 
     }
 }

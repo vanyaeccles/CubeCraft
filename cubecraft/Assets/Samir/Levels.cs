@@ -6,7 +6,7 @@ public class Levels : MonoBehaviour {
 
     // Use this for initialization
     Grid grid;
-    int level1size = 4;
+    int level1size = 3;
     int level2size = 5;
     int levesize;
     public bool isInGamePlay;
@@ -42,9 +42,9 @@ public class Levels : MonoBehaviour {
     {
         grid.Resize(level1size);
 
-        grid.SetActive(0, 0, true);
-        grid.SetActive(0, 1, true);
-        grid.SetActive(0, 2, true);
+        //grid.SetActive(0, 0, true);
+        //grid.SetActive(0, 1, true);
+        //grid.SetActive(0, 2, true);
     }
 
     public void RenderLevel2Problem()
@@ -52,64 +52,64 @@ public class Levels : MonoBehaviour {
         //le
         grid.Resize(level1size);
 
-        grid.SetActive(0, 0, true);
-        grid.SetActive(0, 1, true);
-        grid.SetActive(0, 2, true);
+        //grid.SetActive(0, 0, true);
+        //grid.SetActive(0, 1, true);
+        //grid.SetActive(0, 2, true);
     }
 
     public void CheckLevel1Solution()
     {
-        Debug.Log("Grid size is " + grid.GetSize());
-        for (int i = 0; i < grid.GetSize(); i++)
-        {
-            for (int j = 0; j < grid.GetSize(); j++)
-            {
-                if (i == 0 && (j == 0 || j == 1 || j == 2))
-                {
-                    if (grid.GetActive(i, j))
-                    {
-                        Debug.Log("Cube shouldn't be over a cube:" + i + "," + j);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (!grid.GetActive(i, j))
-                    {
-                        Debug.Log("Cube should be here:" + i + "," + j);
-                        return;
-                    }
-                }
-            }
-        }
-        Debug.Log("Everthing right");
+        //Debug.Log("Grid size is " + grid.GetSize());
+        //for (int i = 0; i < grid.GetSize(); i++)
+        //{
+        //    for (int j = 0; j < grid.GetSize(); j++)
+        //    {
+        //        if (i == 0 && (j == 0 || j == 1 || j == 2))
+        //        {
+        //            if (grid.GetActive(i, j))
+        //            {
+        //                Debug.Log("Cube shouldn't be over a cube:" + i + "," + j);
+        //                return;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (!grid.GetActive(i, j))
+        //            {
+        //                Debug.Log("Cube should be here:" + i + "," + j);
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
+        //Debug.Log("Everthing right");
     }
 
     public void CheckLevel2Solution()
     {
-        Debug.Log("Grid size is " + grid.GetSize());
-        for (int i = 0; i < grid.GetSize(); i++)
-        {
-            for (int j = 0; j < grid.GetSize(); j++)
-            {
-                if (i == 0 && (j == 0 || j == 1 || j == 2))
-                {
-                    if (grid.GetActive(i, j))
-                    {
-                        Debug.Log("Cube shouldn't be over a cube:" + i + "," + j);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (!grid.GetActive(i, j))
-                    {
-                        Debug.Log("Cube should be here:" + i + "," + j);
-                        return;
-                    }
-                }
-            }
-        }
-        Debug.Log("Everthing right");
+        //Debug.Log("Grid size is " + grid.GetSize());
+        //for (int i = 0; i < grid.GetSize(); i++)
+        //{
+        //    for (int j = 0; j < grid.GetSize(); j++)
+        //    {
+        //        if (i == 0 && (j == 0 || j == 1 || j == 2))
+        //        {
+        //            if (grid.GetActive(i, j))
+        //            {
+        //                Debug.Log("Cube shouldn't be over a cube:" + i + "," + j);
+        //                return;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (!grid.GetActive(i, j))
+        //            {
+        //                Debug.Log("Cube should be here:" + i + "," + j);
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
+        //Debug.Log("Everthing right");
     }
 }
