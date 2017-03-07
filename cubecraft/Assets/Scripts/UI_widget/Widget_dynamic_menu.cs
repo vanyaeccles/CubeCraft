@@ -24,7 +24,11 @@ public class Widget_dynamic_menu : MonoBehaviour {
 	void Update () {
 		
 	}
-
+   public  void init()
+    {
+        grabmode_panel.SetActive(false);
+        tilemode_panel.SetActive(true);
+    }
 
    
     void processCreateNewEvent()

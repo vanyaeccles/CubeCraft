@@ -26,6 +26,9 @@ public class Widget_timer : MonoBehaviour {
         timer_text.text = text;
     }
 
-    
+    public void SetTime(string minutes, string seconds)
+    {
+        timer_text.text = minutes + ":" + seconds;
+    }
 
 }

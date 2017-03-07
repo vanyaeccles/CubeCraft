@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using Cube;
-using Judge;
+//using Judge;
 public class UIHandler : MonoBehaviour {
+    
 
-
-    public GameObject MenuPanel;
+ //   public GameObject MenuPanel;
     public GameObject TimerPanel;
     public GameObject ConfirmPanel;
     public GameObject WinPanel;
@@ -31,14 +31,17 @@ public class UIHandler : MonoBehaviour {
     public Button AddButton;
     public Button DeleteButton;
 
-
+    //Timer
+    //public Text timerText;
+    private float startTime;
+    private bool finished = false;
 
     //refactor
-    Widget_timer timer;
-    Widget_dynamic_menu dynamicMenu;
-    Widget_static_menu staticMenu;
-    Widget_win_popup winPopWnd;
-    Widget_restart_confirm_popwnd confirmPopWnd;
+    public Widget_timer timer;
+    public Widget_dynamic_menu dynamicMenu;
+    public Widget_static_menu staticMenu;
+    public Widget_win_popup winPopWnd;
+    public Widget_restart_confirm_popwnd confirmPopWnd;
 
 
     void initWidget()
@@ -58,11 +61,14 @@ public class UIHandler : MonoBehaviour {
     void Start () {
         //refactor
         initWidget();
-       //-refactor
+        //-refactor
+
+        //Initialise timer
+        //timerText = GameObject.Find("TimerText").GetComponent<Text>();//@TODO change to find with tag
+        startTime = Time.time;
 
 
-
-        MenuPanel = GameObject.Find("MenuPanel");
+        //  MenuPanel = GameObject.Find("MenuPanel");
         TimerPanel = GameObject.Find("TimerPanel");
         ConfirmPanel = GameObject.Find("ConfirmPanel");
         WinPanel = GameObject.Find("WinPanel");
@@ -117,18 +123,17 @@ public class UIHandler : MonoBehaviour {
     {
         ShutDownAll();
 
-        MenuPanel.SetActive(true);
+        //MenuPanel.SetActive(true);
         TimerPanel.SetActive(true);
-        ConfirmPanel.SetActive(false);
-
-        GrabMode.SetActive(false);
-        TileMode.SetActive(true);
+        // ConfirmPanel.SetActive(false);
+        confirmPopWnd.hide();
+        dynamicMenu.init();
     }
 
     //DeActivates all UI elements
     void ShutDownAll()
     {
-        MenuPanel.SetActive(false);
+      //  MenuPanel.SetActive(false);
         TimerPanel.SetActive(false);
         ConfirmPanel.SetActive(false);
         WinPanel.SetActive(false);
@@ -147,8 +152,10 @@ public class UIHandler : MonoBehaviour {
         // InitialiseUI();
         //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
         SceneManager.LoadScene("GameplayScene");
-        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
-        GameObject.Find("Player Controlled Cube").GetComponent<Timer>().SetFinished(false);
+
+        //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().Start();
+        //GameObject.Find("Player Controlled Cube").GetComponent<Timer>().SetFinished(false);
+
         //Debug.Log("rest");
         //Back to main menu
     }
@@ -170,8 +177,38 @@ public class UIHandler : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //Timer related
+        if (finished)
+            return;
 
-	}
+        UpdateTimer();
+    }
+
+
+    private void UpdateTimer()
+    {
+        //amount of time since timer started (in seconds)
+        int t = (int)(Time.time - startTime);
+
+        string minutes = (t / 60).ToString();
+        // limits float to "fx" decimal places
+        string seconds = (t % 60).ToString("f0");
+
+        if (t % 60 < 10)
+            seconds = "0" + seconds;
+
+        timer.SetTime(minutes, seconds);
+    }
+    public void Finish()
+    {
+        finished = true;
+        //timerText.color = Color.yellow;
+    }
+    public void SetFinished(bool flag)
+    {
+        finished = flag;
+    }
+
 
 
 
