@@ -6,7 +6,7 @@ public class Levels : MonoBehaviour {
 
     // Use this for initialization
     Grid grid;
-    int level1size = 3;
+    int level1size = 6;
     int level2size = 5;
     int levesize;
     public bool isInGamePlay;
@@ -17,6 +17,7 @@ public class Levels : MonoBehaviour {
     void Start () {
 
         grid.Resize(level1size);
+        GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(level1size, grid.GetOffset());
         if (!isInGamePlay)
         {
             RenderLevel1Problem();
@@ -41,7 +42,7 @@ public class Levels : MonoBehaviour {
     public void RenderLevel1Problem()
     {
         grid.Resize(level1size);
-
+        GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(level1size, grid.GetOffset());
         //grid.SetActive(0, 0, true);
         //grid.SetActive(0, 1, true);
         //grid.SetActive(0, 2, true);
@@ -51,6 +52,7 @@ public class Levels : MonoBehaviour {
     {
         //le
         grid.Resize(level1size);
+        GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(level1size, grid.GetOffset());
 
         //grid.SetActive(0, 0, true);
         //grid.SetActive(0, 1, true);

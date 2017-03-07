@@ -13,7 +13,7 @@ namespace Cube
     {
         //grid information
         private Tile[,,] tiles;
-        private int size = 7;
+        private int size = 3;
         private float offset = 1.0f;
 
         //grid rendering
@@ -78,6 +78,7 @@ namespace Cube
                     for (int k = 0; k < size; k++)
                     {
                         GameObject gameObject = Instantiate(cubePrefab, new Vector3(i * offset, (j*offset) + .5f, k * offset), Quaternion.identity);
+                        gameObject.transform.parent = this.transform;
                         //gameObject.SetActive(false);
                         tiles[i, j,k] = new Tile(gameObject, false);
                     }
@@ -151,6 +152,11 @@ namespace Cube
         public void SetSize(int size)
         {
             this.size = size;
+        }
+
+        public float GetOffset()
+        {
+            return offset;
         }
     }
 }
