@@ -17,8 +17,14 @@ namespace KeyInput
             movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
         }
 
+
         void Update()
         {
+
+            //GameObject camera = GameObject.Find("Main Camera (1)");
+            //Debug.Log("" + camera.transform.forward);
+
+
             if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.UpArrow))
             {
                 movement.MoveForward();

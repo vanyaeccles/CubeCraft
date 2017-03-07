@@ -225,6 +225,7 @@ public class UIHandler : MonoBehaviour {
 
     public void switch2TileModeAdd()
     {
+        return;
         switch2TileMode();
         AddButton.GetComponentInChildren<Text>().text = "ADD";
     }
