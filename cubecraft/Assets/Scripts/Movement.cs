@@ -8,7 +8,7 @@ namespace Cube
     /*Movement.cs
      * This class implements the movements/actions of the ghost cube in the grid. For each action, there is a corresponding function call. 
      */
-    struct Vector3i
+    public struct Vector3i
     {
         public int i;
         public int j;
@@ -70,7 +70,7 @@ namespace Cube
             //@TODO this code should be removed
             if (holdingCube)
             {
-                GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
+                GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrabMode();
             }
             else if (grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied())
             {
@@ -235,7 +235,7 @@ namespace Cube
                 {
                     Debug.Log("You grab the cube at this position");
                     holdingCube = true;
-                    GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrubMode();
+                    GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrabMode();
                     //remove the placedCube from the cubehandler list, set position to ghostcube position
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetIsOccupied(false);
 
@@ -374,6 +374,10 @@ namespace Cube
             return true;
         }
 
+        public Vector3i GetCurrentTile()
+        {
+            return currentTile;
+        }
 
     }
 

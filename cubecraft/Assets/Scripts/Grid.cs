@@ -77,10 +77,12 @@ namespace Cube
                 {
                     for (int k = 0; k < size; k++)
                     {
-                        GameObject gameObject = Instantiate(cubePrefab, new Vector3(i * offset, (j*offset) + .5f, k * offset), Quaternion.identity);
+                        GameObject gameObject = Instantiate(cubePrefab, new Vector3(i * offset, (j * offset) + .5f, k * offset), Quaternion.identity);
                         gameObject.transform.parent = this.transform;
-                        //gameObject.SetActive(false);
-                        tiles[i, j,k] = new Tile(gameObject, false);
+                        //add tileinfo to the object
+                        TileInfo tInfo = gameObject.AddComponent(typeof(TileInfo)) as TileInfo;
+                        tInfo.SetTileIndex(new Vector3i(i, j, k));
+                        tiles[i, j, k] = new Tile(gameObject, false);
                     }
                 }
             }

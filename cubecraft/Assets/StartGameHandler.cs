@@ -14,7 +14,7 @@ public class StartGameHandler : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("GameplayScene", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
+            SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
         }	
 	}
 }

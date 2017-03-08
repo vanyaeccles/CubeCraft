@@ -6,7 +6,7 @@ public class Levels : MonoBehaviour {
 
     // Use this for initialization
     Grid grid;
-    int level1size = 6;
+    int level1size = 3;
     int level2size = 5;
     int levesize;
     public bool isInGamePlay;

@@ -26,25 +26,46 @@ public class Widget_dynamic_menu : MonoBehaviour {
 	}
    public  void init()
     {
-        grabmode_panel.SetActive(false);
-        tilemode_panel.SetActive(true);
+        switch2TileMode();
     }
 
    
     void processCreateNewEvent()
     {
-
+        uiHandler.AddDeletePress();
     }
     void processGrabEvent()
     {
-
+        uiHandler.GrabReleasePress();
     }
     void processDeleteEvent()
     {
-
+        uiHandler.AddDeletePress();
     }
     void processReleaseEvent()
     {
+        uiHandler.GrabReleasePress();
+    }
 
+    public void switch2GrabMode()
+    {
+        grabmode_panel.SetActive(true);
+        tilemode_panel.SetActive(false);
+    }
+
+    public void switch2TileMode()
+    {
+        grabmode_panel.SetActive(false);
+        tilemode_panel.SetActive(true);
+    }
+
+    public void switch2AddMode()
+    {
+        createNewButton.GetComponentInChildren<Text>().text = "ADD";
+    }
+
+    public void switch2DeleteMode()
+    {
+        createNewButton.GetComponentInChildren<Text>().text = "DELETE";
     }
 }

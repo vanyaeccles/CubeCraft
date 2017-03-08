@@ -32,10 +32,10 @@ public class Widget_restart_confirm_popwnd : MonoBehaviour {
 
     void processConfirmEvent()
     {
-
+        uiHandler.ConfirmPress();
     }
     void processCancelEvent()
     {
-
+        uiHandler.CancelPress();
     }
 }

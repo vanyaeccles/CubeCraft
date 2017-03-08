@@ -33,19 +33,16 @@ public class Widget_win_popup : MonoBehaviour {
 
     void processBackEvent()
     {
-
-    
-  
-
+        uiHandler.BackPress();
     }
     void processRestartEvent()
     {
-
+        uiHandler.RestartPress();
     }
 
     void processContinueEvent()
     {
-
+        uiHandler.CancelPress();
     }
 }
 

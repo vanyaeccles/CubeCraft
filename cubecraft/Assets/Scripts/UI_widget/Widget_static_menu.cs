@@ -24,11 +24,11 @@ public class Widget_static_menu : MonoBehaviour {
 
     void processRestartEvent()
     {
-
+        uiHandler.RestartPress();
     }
 
     void processBackEvent()
     {
-
+        uiHandler.BackPress();
     }
 }
