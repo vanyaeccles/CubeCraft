@@ -37,6 +37,6 @@ public class Widget_static_menu : MonoBehaviour {
 
     void processCheckEvent()
     {
-
+        uiHandler.CheckPress();
     }
 }

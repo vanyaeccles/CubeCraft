@@ -22,6 +22,7 @@ public class UIHandler : MonoBehaviour
 
     private Movement movement;
     private CameraOrbit mcamera;
+    private Levels levelchecker;
 
 
     void initWidget()
@@ -40,6 +41,7 @@ public class UIHandler : MonoBehaviour
     {
         movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
         mcamera = GameObject.Find("Main Camera").GetComponent<CameraOrbit>();
+        levelchecker = GameObject.Find("Grid").GetComponent<Levels>();
     }
 
     // Use this for initialization
@@ -82,6 +84,15 @@ public class UIHandler : MonoBehaviour
         //Back to main menu
     }
 
+    public void SolutionCheckPass()
+    {
+        ShutDownAll();
+        
+        winPopWnd.show();
+        StopTimer();
+    }
+
+
     public void CancelPress()
     {
         ShutDownAll();
@@ -110,29 +121,25 @@ public class UIHandler : MonoBehaviour
 
     private void UpdateTimer()
     {
-        //amount of time since timer started (in seconds)
-        int t = (int)(Time.time - startTime);
+        //if(!finished)
+        //{
+            //amount of time since timer started (in seconds)
+            int t = (int)(Time.time - startTime);
 
-        string minutes = (t / 60).ToString();
-        // limits float to "fx" decimal places
-        string seconds = (t % 60).ToString("f0");
+            string minutes = (t / 60).ToString();
+            // limits float to "fx" decimal places
+            string seconds = (t % 60).ToString("f0");
 
-        if (t % 60 < 10)
-            seconds = "0" + seconds;
+            if (t % 60 < 10)
+                seconds = "0" + seconds;
 
-        timer.SetTime(minutes, seconds);
+            timer.SetTime(minutes, seconds);
+        //}
     }
-    public void Finish()
+    public void StopTimer()
     {
         finished = true;
-        //timerText.color = Color.yellow;
     }
-    public void SetFinished(bool flag)
-    {
-        finished = flag;
-    }
-
-
 
 
     public void switch2GrabMode()
@@ -171,5 +178,14 @@ public class UIHandler : MonoBehaviour
     public void CameraRotate(bool left)
     {
         mcamera.MoveVertical(left);
+    }
+
+    public void CheckPress()
+    {
+        // @TODO harcoded for level1, need to fix
+        levelchecker.CheckLevel1Solution();
+
+        if (levelchecker.correctSolution)
+            SolutionCheckPass();       
     }
 }

@@ -25,11 +25,11 @@ namespace KeyInput
             //Debug.Log("" + camera.transform.forward);
 
 
-            if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W)/*||Input.GetKeyDown(KeyCode.UpArrow)*/)
             {
                 movement.MoveForward();
             }
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S) /*|| Input.GetKeyDown(KeyCode.DownArrow)*/)
             {
                 movement.MoveBackward();
             }

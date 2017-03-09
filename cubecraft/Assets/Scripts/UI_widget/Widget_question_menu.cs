@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Widget_question_menu : MonoBehaviour {
 
@@ -20,10 +21,11 @@ public class Widget_question_menu : MonoBehaviour {
 	}
     void processNextQuesEvent()
     {
-
+        Debug.Log("This will load Another Problem");
     }
     void processConfirmEvent()
     {
-
+        Debug.Log("Loading Scene 'Sprint3'");
+        SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
     }
 }

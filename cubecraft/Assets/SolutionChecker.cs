@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Cube;
+
+
+//@TODO This is obselete I think, we can prob delete - V
 public class SolutionChecker : MonoBehaviour {
 
     public Vector3 correct;
     public Vector3 playerAnswer;
 
     string timeScore;
+
+
+
 
 	// Use this for initialization
 	void Start () {

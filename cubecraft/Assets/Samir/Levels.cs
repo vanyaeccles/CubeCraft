@@ -12,6 +12,7 @@ public class Levels : MonoBehaviour
     int level2size = 2;
     int levesize;
     public bool isInGamePlay;
+    public bool correctSolution;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class Levels : MonoBehaviour
     }
     void Start()
     {
-
+        correctSolution = false;
 
 
         grid.Resize(level1size);
@@ -116,6 +117,8 @@ public class Levels : MonoBehaviour
             }
         }
         Debug.Log("Everything right!");
+        //For the uihandler to know when to pop the win panel @TODO this is a bit of a hack
+        correctSolution = true;
     }
 
 
