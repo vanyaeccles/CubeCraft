@@ -138,7 +138,8 @@ namespace Cube
 
         public bool GetActive(int i, int j,int k)
         {
-            return tiles[i, j, k].GetGameObject().activeInHierarchy;
+            //return tiles[i, j, k].GetGameObject().activeInHierarchy;
+            return tiles[i, j, k].GetIsOccupied();
         }
 
         public Tile GetTile(int i, int j, int k)

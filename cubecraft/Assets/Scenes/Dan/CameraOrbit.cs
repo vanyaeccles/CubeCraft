@@ -19,7 +19,11 @@ public class CameraOrbit : MonoBehaviour
 
     public void MoveVertical(bool left)
     {
-        transform.RotateAround(pivot, Vector3.up, horizontalmov);
+
+        float dir = 1;
+        if (!left)
+            dir *= -1;
+        transform.RotateAround(pivot, Vector3.up, horizontalmov * dir);
     }
     public void MoveHorizontal(bool up)
     {

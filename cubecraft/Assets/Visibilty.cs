@@ -32,7 +32,7 @@ public class Visibilty : MonoBehaviour {
     void UpdateVisibilitySlices()
     {
         Vector3i viewDirection = movement.forwardVector;
-        Debug.Log("" + viewDirection.i + "     " + viewDirection.j + "    " + viewDirection.k);
+        //Debug.Log("" + viewDirection.i + "     " + viewDirection.j + "    " + viewDirection.k);
         Vector3i currentTile = movement.GetCurrentTile();
         //Debug.Log("" + currentTile.i + "     " + currentTile.j + "    " + currentTile.k);
         if (viewDirection == new Vector3i(0, 0, 1))
