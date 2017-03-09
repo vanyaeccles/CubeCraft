@@ -281,7 +281,7 @@ namespace Cube
             return transform.position;
         }
 
-
+        //Check which direction the camera is pointing to ensure intuitive movement
         public void checkDirection()
         {
             GameObject camera = GameObject.Find("Main Camera");
@@ -319,23 +319,15 @@ namespace Cube
             }
             backwardVector = new Vector3i(forwardVector) * -1.0f;
             
-
-            Debug.Log("" + forwardVector.i + "  " + forwardVector.j + "   " + forwardVector.k);
-            Debug.Log("" + rightVector.i + "  " + rightVector.j + "   " + rightVector.k);
-
         }
 
 
-
+        //A set of four functions to check if the movement is valid
         public bool checkIfMoveRight()
         {
             Vector3i checker = new Vector3i(0, 0, 0);
             checker = rightVector + currentTile;
-            if (checker.i < 0 || checker.i > 2) return false;
-            if (checker.j < 0 || checker.j > 2) return false;
-            if (checker.k < 0 || checker.k > 2) return false;
-            if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
-            return true;
+            return isStillInGrid(checker);
         }
 
 
@@ -343,11 +335,7 @@ namespace Cube
         {
             Vector3i checker = new Vector3i(0, 0, 0);
             checker = leftVector + currentTile;
-            if (checker.i < 0 || checker.i > 2) return false;
-            if (checker.j < 0 || checker.j > 2) return false;
-            if (checker.k < 0 || checker.k > 2) return false;
-            if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
-            return true;
+            return isStillInGrid(checker);
         }
 
 
@@ -355,11 +343,7 @@ namespace Cube
         {
             Vector3i checker = new Vector3i(0, 0, 0);
             checker = forwardVector + currentTile;
-            if (checker.i < 0 || checker.i > 2) return false;
-            if (checker.j < 0 || checker.j > 2) return false;
-            if (checker.k < 0 || checker.k > 2) return false;
-            if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
-            return true;
+            return isStillInGrid(checker);
         }
 
 
@@ -367,16 +351,22 @@ namespace Cube
         {
             Vector3i checker = new Vector3i(0, 0, 0);
             checker = backwardVector + currentTile;
-            if (checker.i < 0 || checker.i > 2) return false;
-            if (checker.j < 0 || checker.j > 2) return false;
-            if (checker.k < 0 || checker.k > 2) return false;
-            if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
-            return true;
+            return isStillInGrid(checker);
         }
 
         public Vector3i GetCurrentTile()
         {
             return currentTile;
+        }
+
+        //Use to check if the new position will still be in the grid
+        public bool isStillInGrid(Vector3i checker)
+        {
+            if (checker.i < 0 || checker.i > grid.GetSize() - 1) return false;
+            if (checker.j < 0 || checker.j > grid.GetSize() - 1) return false;
+            if (checker.k < 0 || checker.k > grid.GetSize() - 1) return false;
+            if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
+            return true;
         }
 
     }
