@@ -67,6 +67,9 @@ namespace Cube
         // Update is called once per frame
         void Update()
         {
+
+            checkDirection();
+
             //@TODO this code should be removed
             if (holdingCube)
             {
