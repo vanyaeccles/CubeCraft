@@ -36,6 +36,18 @@ namespace Cube
         {
             return new Vector3i(v.i + v2.i, v.j + v2.j, v.k + v2.k);
         }
+
+        public static bool operator ==(Vector3i a, Vector3i b)
+        {
+            if (a.i == b.i && a.j == b.j && a.k == b.k) return true;
+            else return false;
+        }
+
+        public static bool operator !=(Vector3i a, Vector3i b)
+        {
+            if (a.i != b.i || a.j != b.j || a.k != b.k) return true;
+            else return false;
+        }
     };
 
 
@@ -45,7 +57,7 @@ namespace Cube
         //grid reference and ghost location in the grid
         private Vector3i currentTile;
         private Grid grid;
-        private Vector3i forwardVector;
+        public Vector3i forwardVector;
         private Vector3i backwardVector;
         private Vector3i rightVector;
         private Vector3i leftVector;
@@ -321,7 +333,6 @@ namespace Cube
                 }
             }
             backwardVector = new Vector3i(forwardVector) * -1.0f;
-            
         }
 
 
