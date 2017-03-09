@@ -12,13 +12,16 @@ public class UIHandler : MonoBehaviour
     private bool finished = false;
 
     //refactor
+
     public Widget_timer timer;
     public Widget_dynamic_menu dynamicMenu;
     public Widget_static_menu staticMenu;
     public Widget_win_popup winPopWnd;
     public Widget_restart_confirm_popwnd confirmPopWnd;
+    public Widget_camera_rotation cameraRot;
 
     private Movement movement;
+    private CameraOrbit mcamera;
 
 
     void initWidget()
@@ -28,6 +31,7 @@ public class UIHandler : MonoBehaviour
         staticMenu.uiHandler = this;
         winPopWnd.uiHandler = this;
         confirmPopWnd.uiHandler = this;
+        cameraRot.uiHandler = this;
     }
     //-refactor
 
@@ -35,6 +39,7 @@ public class UIHandler : MonoBehaviour
     void Awake()
     {
         movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
+        mcamera = GameObject.Find("Main Camera").GetComponent<CameraOrbit>();
     }
 
     // Use this for initialization
@@ -160,5 +165,11 @@ public class UIHandler : MonoBehaviour
     public void AddDeletePress()
     {
         movement.AddDelete();
+    }
+
+    // Camera Stuff @TODO refactor this perhaps
+    public void CameraRotate(bool left)
+    {
+        mcamera.MoveVertical(left);
     }
 }

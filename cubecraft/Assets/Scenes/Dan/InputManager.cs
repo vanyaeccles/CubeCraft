@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour {
 
@@ -9,7 +10,6 @@ public class InputManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cam = GetComponent<CameraOrbit>();
-
 	}
 	
 	// Update is called once per frame
@@ -21,14 +21,20 @@ public class InputManager : MonoBehaviour {
         {
             cam.MoveHorizontal(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             cam.MoveVertical(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             cam.MoveVertical(false);
         }
+
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
+        //}
 
     }
 }

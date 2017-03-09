@@ -33,11 +33,11 @@ namespace KeyInput
             {
                 movement.MoveBackward();
             }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) /*|| Input.GetKeyDown(KeyCode.LeftArrow)*/) //Left/Right arrow keys now move camera
             {
                 movement.MoveLeft();
             }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) /*|| Input.GetKeyDown(KeyCode.RightArrow)*/)
             {
                 movement.MoveRight();
             }
@@ -49,6 +49,9 @@ namespace KeyInput
             {
                 movement.MoveDown();
             }
+
+
+
         }
     }
 }

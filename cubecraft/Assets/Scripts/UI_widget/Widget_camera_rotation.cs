@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Widget_camera_rotation : MonoBehaviour {
+    public UIHandler uiHandler;
     public Button turnLeftButton;
     public Button turnRightButton;
     public GameObject operationPanel;
@@ -21,10 +22,10 @@ public class Widget_camera_rotation : MonoBehaviour {
 
     void processTurnLeftEvent()
     {
-
+        uiHandler.CameraRotate(true);
     }
     void processTurnRightEvent()
     {
-
+        uiHandler.CameraRotate(false);
     }
 }
