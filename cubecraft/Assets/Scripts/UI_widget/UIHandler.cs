@@ -19,6 +19,7 @@ public class UIHandler : MonoBehaviour
     public Widget_win_popup winPopWnd;
     public Widget_restart_confirm_popwnd confirmPopWnd;
     public Widget_camera_rotation cameraRot;
+    public Widget_lose_popwnd losePopWnd;
 
     private Movement movement;
     private CameraOrbit mcamera;
@@ -33,6 +34,7 @@ public class UIHandler : MonoBehaviour
         winPopWnd.uiHandler = this;
         confirmPopWnd.uiHandler = this;
         cameraRot.uiHandler = this;
+        losePopWnd.uiHandler = this;
     }
     //-refactor
 
@@ -68,6 +70,7 @@ public class UIHandler : MonoBehaviour
     {
         confirmPopWnd.hide();
         winPopWnd.hide();
+        losePopWnd.hide();
     }
 
     public void RestartPress()
