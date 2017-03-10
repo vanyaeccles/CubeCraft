@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Widget_restart_confirm_popwnd : MonoBehaviour {
     public UIHandler uiHandler;
     public GameObject confirmPanel;
+    public GameObject contentPanel;
     public Button confirmButton;
     public Button cancelButton;
 
