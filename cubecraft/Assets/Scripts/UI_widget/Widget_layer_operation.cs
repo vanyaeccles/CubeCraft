@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Widget_layer_operation : MonoBehaviour {
+    public UIHandler uiHandler;
     public GameObject operationPanel;
 
     public Button moveUpButton;
@@ -22,11 +23,11 @@ public class Widget_layer_operation : MonoBehaviour {
 
     void processMoveUpEvent()
     {
-
+        uiHandler.move2UpLayer();
     }
 
     void processMoveDownEvent()
     {
-
+        uiHandler.move2DownLayer();
     }
 }

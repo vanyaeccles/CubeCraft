@@ -1,18 +1,15 @@
 fileFormatVersion: 2
-guid: d8c608d65520bc9429ce6b36b370d8e1
-timeCreated: 1489069416
+guid: e6f62ae54ac29674492f18c6ff29b548
+timeCreated: 1489184234
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: operation_1_0
-    21300002: operation_1_1
-    21300004: operation_1_2
-    21300006: operation_1_3
-    21300008: operation_1_4
-    21300010: operation_1_5
-    21300012: operation_1_6
-    21300014: operation_1_7
-    21300016: operation_1_8
+    21300000: operation-07-07_0
+    21300002: operation-07-07_1
+    21300004: operation-07-07_2
+    21300006: operation-07-07_3
+    21300008: operation-07-07_5
+    21300010: operation-07-07_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -37,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -79,20 +76,20 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: operation_1_0
+      name: operation-07-07_0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 988
-        width: 755
-        height: 755
+        x: 94
+        y: 968
+        width: 761
+        height: 778
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: operation_1_1
+      name: operation-07-07_1
       rect:
         serializedVersion: 2
         x: 1087
@@ -100,98 +97,59 @@ TextureImporter:
         width: 678
         height: 543
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: operation_1_2
+      name: operation-07-07_2
       rect:
         serializedVersion: 2
-        x: 2001
-        y: 988
-        width: 755
-        height: 755
+        x: 1929
+        y: 931
+        width: 760
+        height: 777
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: operation-07-07_3
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 117
+        width: 762
+        height: 777
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: operation-07-07_5
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 324
+        width: 463
+        height: 447
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: operation_1_3
+      name: operation-07-07_6
       rect:
         serializedVersion: 2
-        x: 97
-        y: 167
-        width: 755
-        height: 755
+        x: 1955
+        y: 103
+        width: 762
+        height: 779
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: operation_1_4
-      rect:
-        serializedVersion: 2
-        x: 1207
-        y: 442
-        width: 441
-        height: 159
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: operation_1_5
-      rect:
-        serializedVersion: 2
-        x: 1207
-        y: 561
-        width: 441
-        height: 205
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: operation_1_6
-      rect:
-        serializedVersion: 2
-        x: 2001
-        y: 167
-        width: 755
-        height: 755
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: operation_1_7
-      rect:
-        serializedVersion: 2
-        x: 1207
-        y: 325
-        width: 441
-        height: 157
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: operation_1_8
-      rect:
-        serializedVersion: 2
-        x: 1201
-        y: 317
-        width: 455
-        height: 454
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -20,6 +20,10 @@ public class UIHandler : MonoBehaviour
     public Widget_restart_confirm_popwnd confirmPopWnd;
     public Widget_camera_rotation cameraRot;
     public Widget_lose_popwnd losePopWnd;
+    public Widget_four_direction_operation fourDirMenu;
+    public Widget_layer_operation layerMoveMenu;
+
+
 
     private Movement movement;
     private CameraOrbit mcamera;
@@ -35,6 +39,8 @@ public class UIHandler : MonoBehaviour
         confirmPopWnd.uiHandler = this;
         cameraRot.uiHandler = this;
         losePopWnd.uiHandler = this;
+        fourDirMenu.uiHandler = this;
+        layerMoveMenu.uiHandler = this;
     }
     //-refactor
 
@@ -180,6 +186,14 @@ public class UIHandler : MonoBehaviour
     // Camera Stuff @TODO refactor this perhaps
     public void CameraRotate(bool left)
     {
+        if (left)
+        {
+            fourDirMenu.rotCameraLeft();
+        }else
+        {
+            fourDirMenu.rotCameraRight();
+        }
+
         mcamera.MoveVertical(left);
     }
 
@@ -190,5 +204,35 @@ public class UIHandler : MonoBehaviour
 
         if (levelchecker.correctSolution)
             SolutionCheckPass();       
+    }
+
+    // absolutly moving without taking care of rotation
+    public void moveForward()
+    {
+        movement.MoveForward();
+    }
+
+    public void moveBack()
+    {
+        movement.MoveBackward();
+    }
+
+    public void moveLeft()
+    {
+        movement.MoveLeft();
+    }
+    public void moveRight()
+    {
+        movement.MoveRight();
+    }
+
+    public void move2UpLayer()
+    {
+        movement.MoveUp();
+    }
+
+    public void move2DownLayer()
+    {
+        movement.MoveDown();
     }
 }
