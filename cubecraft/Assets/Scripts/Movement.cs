@@ -79,10 +79,16 @@ namespace Cube
         // Update is called once per frame
         void Update()
         {
+            checkDirection();//@TODO called by the UI handler and Keyboard Input when orientation is changed
+        }
 
-            checkDirection();
+        private void UpdatePosition()
+        {
+           transform.position = grid.GetTile(currentTile.i,currentTile.j, currentTile.k).GetGameObject().transform.position;
+        }
 
-            //@TODO this code should be removed
+        void UpdateUI()
+        {
             if (holdingCube)
             {
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrabMode();
@@ -95,11 +101,6 @@ namespace Cube
             {
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
             }
-        }
-
-        private void UpdatePosition()
-        {
-           transform.position = grid.GetTile(currentTile.i,currentTile.j, currentTile.k).GetGameObject().transform.position;
         }
 
         public bool MoveRight()
@@ -119,6 +120,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -140,6 +142,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -161,6 +164,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -182,6 +186,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -201,6 +206,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -220,6 +226,7 @@ namespace Cube
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().SetActive(true);
                 }
                 UpdatePosition();
+                UpdateUI();
                 return true;
             }
             return false;
@@ -260,6 +267,7 @@ namespace Cube
                     Debug.Log("There is nothing to grab!");
                 }
             }
+            UpdateUI();
         }
 
         public void AddDelete()
@@ -289,6 +297,7 @@ namespace Cube
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
                 }
             }
+            UpdateUI();
         }
 
         public Vector3 GetPosition()
@@ -382,7 +391,6 @@ namespace Cube
             if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
             return true;
         }
-
     }
 
 }

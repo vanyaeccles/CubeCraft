@@ -14,21 +14,21 @@ public class InputManagerProblemScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            cam.MoveHorizontal(true);
-        } else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            cam.MoveHorizontal(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            cam.MoveVertical(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            cam.MoveVertical(false);
-        }
+		//if (Input.GetKeyDown(KeyCode.Alpha9))
+  //      {
+  //          cam.MoveHorizontal(true);
+  //      } else if (Input.GetKeyDown(KeyCode.Alpha0))
+  //      {
+  //          cam.MoveHorizontal(false);
+  //      }
+  //      else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.LeftArrow))
+  //      {
+  //          cam.MoveVertical(true);
+  //      }
+  //      else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightArrow))
+  //      {
+  //          cam.MoveVertical(false);
+  //      }
 
     }
 }

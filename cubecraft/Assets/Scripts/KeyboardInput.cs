@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cube;
 
 namespace KeyInput
@@ -11,10 +12,21 @@ namespace KeyInput
     public class KeyboardInput : MonoBehaviour
     {
         private Movement movement;
+        private CameraOrbit cameraOrbit;
+        private SceneLoader sceneLoader;
+        //private bool isInGamePlay = true;
 
         void Awake()
         {
-            movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
+            sceneLoader = GameObject.Find("SceneManager").GetComponent<SceneLoader>();
+            if (sceneLoader.isSolutionScene())
+            {
+                movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
+            }
+            if (sceneLoader.isProblemScene() || sceneLoader.isSolutionScene())
+            {
+                cameraOrbit = GameObject.Find("Main Camera").GetComponent<CameraOrbit>();
+            }
         }
 
 
@@ -24,32 +36,62 @@ namespace KeyInput
             //GameObject camera = GameObject.Find("Main Camera (1)");
             //Debug.Log("" + camera.transform.forward);
 
-
-            if (Input.GetKeyDown(KeyCode.W)/*||Input.GetKeyDown(KeyCode.UpArrow)*/)
+            //Input to move the cube
+            if (sceneLoader.isSolutionScene())
             {
-                movement.MoveForward();
+                if (Input.GetKeyDown(KeyCode.W)/*||Input.GetKeyDown(KeyCode.UpArrow)*/)
+                {
+                    movement.MoveForward();
+                }
+                if (Input.GetKeyDown(KeyCode.S) /*|| Input.GetKeyDown(KeyCode.DownArrow)*/)
+                {
+                    movement.MoveBackward();
+                }
+                if (Input.GetKeyDown(KeyCode.A) /*|| Input.GetKeyDown(KeyCode.LeftArrow)*/) //Left/Right arrow keys now move camera
+                {
+                    movement.MoveLeft();
+                }
+                if (Input.GetKeyDown(KeyCode.D) /*|| Input.GetKeyDown(KeyCode.RightArrow)*/)
+                {
+                    movement.MoveRight();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    movement.MoveUp();
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    movement.MoveDown();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.S) /*|| Input.GetKeyDown(KeyCode.DownArrow)*/)
+            //Input to move the camera
+            if (sceneLoader.isSolutionScene() || sceneLoader.isProblemScene())
             {
-                movement.MoveBackward();
+                if (Input.GetKeyDown(KeyCode.Alpha9))
+                {
+                    cameraOrbit.MoveHorizontal(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha0))
+                {
+                    cameraOrbit.MoveHorizontal(false);
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    cameraOrbit.MoveVertical(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    cameraOrbit.MoveVertical(false);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.A) /*|| Input.GetKeyDown(KeyCode.LeftArrow)*/) //Left/Right arrow keys now move camera
+            //Input to change scenes
+            if (sceneLoader.isProblemScene())
             {
-                movement.MoveLeft();
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    sceneLoader.LoadSolutionScene();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.D) /*|| Input.GetKeyDown(KeyCode.RightArrow)*/)
-            {
-                movement.MoveRight();
-            }
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                movement.MoveUp();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                movement.MoveDown();
-            }
-
 
 
         }

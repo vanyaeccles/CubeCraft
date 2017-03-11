@@ -89,7 +89,8 @@ public class UIHandler : MonoBehaviour
     {
         ShutDownAll();
         //SceneManager.LoadScene("GameplayScene");
-        SceneManager.LoadScene("Sprint3");
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
+        //SceneManager.LoadScene("Sprint3");
         //Back to main menu
     }
 
@@ -112,7 +113,8 @@ public class UIHandler : MonoBehaviour
     public void BackPress()
     {
         ShutDownAll();
-        SceneManager.LoadScene("StartScene");
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
+        //SceneManager.LoadScene("StartScene");
         // Do something else
     }
 
@@ -183,7 +185,7 @@ public class UIHandler : MonoBehaviour
         movement.AddDelete();
     }
 
-    // Camera Stuff @TODO refactor this perhaps
+    // Camera Stuff
     public void CameraRotate(bool left)
     {
         if (left)
@@ -199,7 +201,7 @@ public class UIHandler : MonoBehaviour
 
     public void CheckPress()
     {
-        // @TODO harcoded for level1, need to fix
+        // @TODO JSON reimplementation
         levelchecker.CheckLevel1Solution();
 
         if (levelchecker.correctSolution)

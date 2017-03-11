@@ -29,141 +29,61 @@ public class Visibilty : MonoBehaviour {
         
     }
 
+    bool isTileOpaque(int i,int j, int k,Vector3i currentTile,Vector3i viewDirection)
+    {
+        if(viewDirection==new Vector3i(0, 0, 1))
+        {
+            if (j < currentTile.j || k > currentTile.k)
+                return true;
+        }
+        else if(viewDirection == new Vector3i(1, 0, 0)){
+            if (j < currentTile.j || i > currentTile.i)
+                return true;
+        }
+        else if (viewDirection == new Vector3i(0, 0, -1))
+        {
+            if (j < currentTile.j || k < currentTile.k)
+                return true;
+        }
+        else if (viewDirection == new Vector3i(-1, 0, 0))
+        {
+            if (j < currentTile.j || i < currentTile.i)
+                return true;
+        }
+            return false;
+    }
+
     void UpdateVisibilitySlices()
     {
         Vector3i viewDirection = movement.forwardVector;
-        //Debug.Log("" + viewDirection.i + "     " + viewDirection.j + "    " + viewDirection.k);
         Vector3i currentTile = movement.GetCurrentTile();
-        //Debug.Log("" + currentTile.i + "     " + currentTile.j + "    " + currentTile.k);
-        if (viewDirection == new Vector3i(0, 0, 1))
+        for (int i = 0; i < grid.GetSize(); i++)
         {
-            for (int i = 0; i < grid.GetSize(); i++)
+            for (int j = 0; j < grid.GetSize(); j++)
             {
-                for (int j = 0; j < grid.GetSize(); j++)
+                for (int k = 0; k < grid.GetSize(); k++)
                 {
-                    for (int k = 0; k < grid.GetSize(); k++)
+                    if (isTileOpaque(i, j, k, currentTile, viewDirection))
                     {
-                        if (j < currentTile.j || k > currentTile.k)
+                        if (grid.GetTile(i, j, k).GetIsOccupied())
                         {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
-                            }
-                            else
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = gridMat;
-                            }
+                            grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
                         }
                         else
                         {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
-                            }
-
+                            grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = gridMat;
+                        }
+                    }
+                    else
+                    {
+                        if (grid.GetTile(i, j, k).GetIsOccupied())
+                        {
+                            grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
                         }
                     }
                 }
             }
         }
-
-        else if (viewDirection == new Vector3i(1, 0, 0))
-        {
-            for (int i = 0; i < grid.GetSize(); i++)
-            {
-                for (int j = 0; j < grid.GetSize(); j++)
-                {
-                    for (int k = 0; k < grid.GetSize(); k++)
-                    {
-                        if (j < currentTile.j || i > currentTile.i)
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
-                            }
-                            else
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = gridMat;
-                            }
-                        }
-                        else
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-        else if (viewDirection == new Vector3i(0, 0, -1))
-        {
-            for (int i = 0; i < grid.GetSize(); i++)
-            {
-                for (int j = 0; j < grid.GetSize(); j++)
-                {
-                    for (int k = 0; k < grid.GetSize(); k++)
-                    {
-                        if (j < currentTile.j || k < currentTile.k)
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
-                            }
-                            else
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = gridMat;
-                            }
-                        }
-                        else
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-        else if (viewDirection == new Vector3i(-1, 0, 0))
-        {
-            for (int i = 0; i < grid.GetSize(); i++)
-            {
-                for (int j = 0; j < grid.GetSize(); j++)
-                {
-                    for (int k = 0; k < grid.GetSize(); k++)
-                    {
-                        if (j < currentTile.j || i < currentTile.i)
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
-                            }
-                            else
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = gridMat;
-                            }
-                        }
-                        else
-                        {
-                            if (grid.GetTile(i, j, k).GetIsOccupied())
-                            {
-                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-
     }
 
     void UpdateVisibilityRaycast()

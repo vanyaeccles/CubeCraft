@@ -26,6 +26,7 @@ public class Widget_question_menu : MonoBehaviour {
     void processConfirmEvent()
     {
         Debug.Log("Loading Scene 'Sprint3'");
-        SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
+        //SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
     }
 }

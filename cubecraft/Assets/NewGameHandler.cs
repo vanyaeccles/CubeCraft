@@ -18,6 +18,7 @@ public class NewGameHandler: MonoBehaviour {
     void StartNewGame()
     {
         Debug.Log("start new game!");
-        SceneManager.LoadScene("Samir/ProblemScene", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
+        //SceneManager.LoadScene("Samir/ProblemScene", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
     }
 }
