@@ -18,7 +18,7 @@ public class ProblemScript : MonoBehaviour
     private GameObject cube;
     private GameObject solCube;
 
-    private List<PlacedCube> Cubes;
+    //private List<PlacedCube> Cubes;
 
     public GameObject cubePrefab;
 

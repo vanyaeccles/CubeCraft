@@ -28,6 +28,7 @@ public class UIHandler : MonoBehaviour
     private Movement movement;
     private CameraOrbit mcamera;
     private Levels levelchecker;
+    private Grid grid;
 
 
     void initWidget()
@@ -50,8 +51,9 @@ public class UIHandler : MonoBehaviour
         movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
         mcamera = GameObject.Find("Main Camera").GetComponent<CameraOrbit>();
         levelchecker = GameObject.Find("Grid").GetComponent<Levels>();
+        grid = GameObject.Find("Grid").GetComponent<Grid>();
     }
-
+    
     // Use this for initialization
     void Start()
     {
@@ -202,10 +204,14 @@ public class UIHandler : MonoBehaviour
     public void CheckPress()
     {
         // @TODO JSON reimplementation
-        levelchecker.CheckLevel1Solution();
+        //levelchecker.CheckLevel1Solution();
 
-        if (levelchecker.correctSolution)
-            SolutionCheckPass();       
+        //if (levelchecker.correctSolution)
+        //  SolutionCheckPass();       
+        if (ProblemHandler.checkSolution(grid))
+        {
+            SolutionCheckPass();
+        }
     }
 
     // absolutly moving without taking care of rotation

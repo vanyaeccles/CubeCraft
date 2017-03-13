@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Problem{
     [SerializeField]
-    int dimension;
+    public int dimension;
 
     [SerializeField]
-    tileDataArray[] tiles;
+    public tileDataArray2D[] tiles;
 
     public void Save(string filename){
         string json_str = JsonUtility.ToJson(this);
@@ -35,5 +35,11 @@ public class Problem{
     public struct tileDataArray
     {
         public tileData[] row;
+    }
+
+    [System.Serializable]
+    public struct tileDataArray2D
+    {
+        public tileDataArray[] column;
     }
 }
