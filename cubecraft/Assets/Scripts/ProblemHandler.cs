@@ -14,13 +14,13 @@ public class ProblemHandler
 
    public static void setProblem(Grid grid)
     {
-        for (int i = 0; i < problem.tiles.Length; i++)
+        for (int i = 0; i < problem.xTiles.Length; i++)
         {
-            for (int j = 0; j < problem.tiles[i].column.Length; j++)
+            for (int j = 0; j < problem.xTiles[i].yTiles.Length; j++)
             {
-                for (int k = 0; k < problem.tiles[i].column[j].row.Length; k++)
+                for (int k = 0; k < problem.xTiles[i].yTiles[j].zTiles.Length; k++)
                 {
-                    grid.SetActive(i, j, k,problem.tiles[i].column[j].row[k].hasCube);
+                    grid.SetActive(i, j, k,problem.xTiles[i].yTiles[j].zTiles[k].hasCube);
                 }
             }
         }
@@ -32,27 +32,27 @@ public class ProblemHandler
         bool vote2 = true;
         bool vote3 = true;
         bool vote4 = true;
-        for (int i = 0; i < problem.tiles.Length; i++)
+        for (int i = 0; i < problem.xTiles.Length; i++)
         {
-            for (int j = 0; j < problem.tiles[i].column.Length; j++)
+            for (int j = 0; j < problem.xTiles[i].yTiles.Length; j++)
             {
-                for (int k = 0; k < problem.tiles[i].column[j].row.Length; k++)
+                for (int k = 0; k < problem.xTiles[i].yTiles[j].zTiles.Length; k++)
                 {
-                    int ii = (problem.tiles.Length - 1) - i;
-                    int kk = (problem.tiles[i].column[j].row.Length - 1) - k;
-                    if (grid.GetTile(i, j, k).GetIsOccupied() == problem.tiles[i].column[j].row[k].hasCube)
+                    int ii = (problem.xTiles.Length - 1) - i;
+                    int kk = (problem.xTiles[i].yTiles[j].zTiles.Length - 1) - k;
+                    if (grid.GetTile(i, j, k).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
                     {
                         vote1 = false;
                     }
-                    if (grid.GetTile(ii, j, k).GetIsOccupied() == problem.tiles[i].column[j].row[k].hasCube)
+                    if (grid.GetTile(ii, j, k).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
                     {
                         vote2 = false;
                     }
-                    if (grid.GetTile(i, j, kk).GetIsOccupied() == problem.tiles[i].column[j].row[k].hasCube)
+                    if (grid.GetTile(i, j, kk).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
                     {
                         vote3 = false;
                     }
-                    if (grid.GetTile(ii, j, kk).GetIsOccupied() == problem.tiles[i].column[j].row[k].hasCube)
+                    if (grid.GetTile(ii, j, kk).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
                     {
                         vote4 = false;
                     }
@@ -65,13 +65,13 @@ public class ProblemHandler
     public static void GenerateRandomProblemJSON(int dimension,string path)
     {
         Problem problem = new Problem();
-        problem.tiles = new Problem.tileDataArray2D[dimension];
-        for(int i = 0; i < problem.tiles.Length; i++)
+        problem.xTiles = new Problem.tileDataArray2D[dimension];
+        for(int i = 0; i < problem.xTiles.Length; i++)
         {
-            problem.tiles[i].column = new Problem.tileDataArray[dimension];
-            for(int j = 0; j < problem.tiles[i].column.Length; j++)
+            problem.xTiles[i].yTiles = new Problem.tileDataArray[dimension];
+            for(int j = 0; j < problem.xTiles[i].yTiles.Length; j++)
             {
-                problem.tiles[i].column[j].row = new Problem.tileData[dimension];
+                problem.xTiles[i].yTiles[j].zTiles = new Problem.tileData[dimension];
             }
         }
         problem.dimension = dimension;
@@ -81,7 +81,7 @@ public class ProblemHandler
             {
                 for(int k = 0; k < dimension; k++)
                 {
-                    problem.tiles[i].column[j].row[k].hasCube = (Random.Range(-1.0f, 1.0f) > 0.0f);
+                    problem.xTiles[i].yTiles[j].zTiles[k].hasCube = (Random.Range(-1.0f, 1.0f) > 0.0f);
                 }
             }
         }

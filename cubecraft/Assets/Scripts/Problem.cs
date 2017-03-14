@@ -8,7 +8,7 @@ public class Problem{
     public int dimension;
 
     [SerializeField]
-    public tileDataArray2D[] tiles;
+    public tileDataArray2D[] xTiles;
 
     public void Save(string filename){
         string json_str = JsonUtility.ToJson(this);
@@ -34,12 +34,12 @@ public class Problem{
     [System.Serializable]
     public struct tileDataArray
     {
-        public tileData[] row;
+        public tileData[] zTiles;
     }
 
     [System.Serializable]
     public struct tileDataArray2D
     {
-        public tileDataArray[] column;
+        public tileDataArray[] yTiles;
     }
 }
