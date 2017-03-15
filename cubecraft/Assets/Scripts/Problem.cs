@@ -19,10 +19,19 @@ public class Problem{
 
     public static Problem Load(string filename)
     {
-         string path = Application.persistentDataPath+"/"+filename;
-         string json_str=System.IO.File.ReadAllText(path);
-         Debug.Log("json string is " + json_str);
-         return JsonUtility.FromJson<Problem>(json_str);
+        string path = Application.persistentDataPath + "/" + filename;
+        Problem problem;
+        try
+        {
+            string json_str = System.IO.File.ReadAllText(path);
+            Debug.Log("Loaded from " + path);
+            problem = JsonUtility.FromJson<Problem>(json_str);
+        }
+        catch
+        {
+            problem = null;
+        }
+        return problem;
     }
 
     [System.Serializable]
