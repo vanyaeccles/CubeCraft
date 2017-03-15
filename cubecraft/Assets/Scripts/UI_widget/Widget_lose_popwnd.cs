@@ -11,7 +11,7 @@ public class Widget_lose_popwnd : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tryAgainButton.onClick.AddListener(processTryAgainEvent);
-        tryAgainButton.onClick.AddListener(processBackEvent);
+        backButton.onClick.AddListener(processBackEvent);
 	}
 	
 	// Update is called once per frame
@@ -21,12 +21,12 @@ public class Widget_lose_popwnd : MonoBehaviour {
 
     void processBackEvent()
     {
-
+        uiHandler.BackPress();
     }
 
     void processTryAgainEvent()
     {
-
+        uiHandler.ReloadProblemScene();
     }
 
     public  void hide()

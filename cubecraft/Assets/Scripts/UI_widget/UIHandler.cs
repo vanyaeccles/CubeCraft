@@ -102,6 +102,16 @@ public class UIHandler : MonoBehaviour
         
         winPopWnd.show();
         StopTimer();
+        GameObject.Find("Main Camera").GetComponent<SoundManager>().playWin();
+    }
+
+    public void SolutionCheckFail()
+    {
+        ShutDownAll();
+
+        losePopWnd.show();
+        StopTimer();
+        GameObject.Find("Main Camera").GetComponent<SoundManager>().playLose();
     }
 
 
@@ -199,6 +209,7 @@ public class UIHandler : MonoBehaviour
         }
 
         mcamera.MoveVertical(left);
+        
     }
 
     public void CheckPress()
@@ -211,6 +222,10 @@ public class UIHandler : MonoBehaviour
         if (ProblemHandler.checkSolution(grid))
         {
             SolutionCheckPass();
+        }
+        else
+        {
+            SolutionCheckFail();
         }
     }
 
@@ -242,5 +257,10 @@ public class UIHandler : MonoBehaviour
     public void move2DownLayer()
     {
         movement.MoveDown();
+    }
+
+    public void ReloadProblemScene()
+    {
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
     }
 }

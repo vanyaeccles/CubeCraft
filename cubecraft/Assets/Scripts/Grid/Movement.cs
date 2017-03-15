@@ -103,6 +103,21 @@ namespace Cube
             }
         }
 
+        void PlayMoveSound()
+        {
+            GameObject.Find("Main Camera").GetComponent<SoundManager>().playMove();
+        }
+
+        void PlayAddSound()
+        {
+            GameObject.Find("Main Camera").GetComponent<SoundManager>().playAdd();
+        }
+
+        void PlayDeleteSound()
+        {
+            GameObject.Find("Main Camera").GetComponent<SoundManager>().playDelete();
+        }
+
         public bool MoveRight()
         {
 
@@ -121,6 +136,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -143,6 +159,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -165,6 +182,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -187,6 +205,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -207,6 +226,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -227,6 +247,7 @@ namespace Cube
                 }
                 UpdatePosition();
                 UpdateUI();
+                PlayMoveSound();
                 return true;
             }
             return false;
@@ -279,6 +300,7 @@ namespace Cube
                 grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 holdingCube = false;
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
+                PlayDeleteSound();
             }
 
             else if (!holdingCube)
@@ -288,6 +310,8 @@ namespace Cube
                     Debug.Log("You add a new cube at this position.");
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(true);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
+                    PlayAddSound();
+                    
                 }
                 else if (cubeAtPos)
                 {
@@ -295,6 +319,7 @@ namespace Cube
 
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
+                    PlayDeleteSound();
                 }
             }
             UpdateUI();
