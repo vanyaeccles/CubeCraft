@@ -19,12 +19,24 @@ public class Visibilty : MonoBehaviour {
         movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
     }
     void Start() {
-
+        //Resize cubes if a 3x3 problem. 2x2 is default setting
+        if (grid.GetSize() == 3)
+        {
+            GameObject.Find("Player Controlled Cube").transform.position = new Vector3(0, .3f, 0);
+        }
     }
 
     // Update is called once per frame
     void Update() {
         //UpdateVisibilityRaycast();
+
+        //make sure grid is visible, i.e depending on size of problem
+        if (grid.GetSize() == 3)
+        {
+            GameObject.Find("Grid").transform.localScale = new Vector3(.6f, .6f, .6f);
+            GameObject.Find("Player Controlled Cube").transform.localScale = new Vector3(.69f, .69f, .69f);
+        }
+
         UpdateVisibilitySlices();
         
     }
