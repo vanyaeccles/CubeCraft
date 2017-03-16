@@ -63,6 +63,12 @@ namespace KeyInput
                 {
                     movement.MoveDown();
                 }
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    //"save to JSON a problem"
+                    ProblemHandler.setProblem(GameObject.Find("Grid").GetComponent<Grid>());
+                    ProblemHandler.saveProblem("Saved"+ System.DateTime.Now.ToString("yyyyMMddHHmmssfff")+".JSON");
+                }
             }
             //Input to move the camera
             if (sceneLoader.isSolutionScene() || sceneLoader.isProblemScene())

@@ -13,16 +13,16 @@ public class Levels : MonoBehaviour
     }
     void Start()
     {  
-        if (!ProblemHandler.loadProblem("Random3.JSON"))
+        if (!ProblemHandler.loadProblem("Random2.JSON"))
         {
-            ProblemHandler.GenerateRandomProblemJSON(3,"Random3.JSON");
-            ProblemHandler.loadProblem("Random3.JSON");
+            ProblemHandler.GenerateRandomProblemJSON(3,"Random2.JSON");
+            ProblemHandler.loadProblem("Random2.JSON");
         }
         grid.Resize(ProblemHandler.GetProblemSize());
         GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(ProblemHandler.GetProblemSize(), grid.GetOffset());
         if (!isInGamePlay)
         {
-            ProblemHandler.setProblem(grid);
+            ProblemHandler.setGrid(grid);
         }     
     }
 }

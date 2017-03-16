@@ -12,7 +12,12 @@ public class ProblemHandler
         return true;
     }
 
-   public static void setProblem(Grid grid)
+    public static void saveProblem(string path)
+    {
+        problem.Save(path);
+    }
+
+   public static void setGrid(Grid grid)
     {
         for (int i = 0; i < problem.xTiles.Length; i++)
         {
@@ -24,6 +29,21 @@ public class ProblemHandler
                 }
             }
         }
+    }
+
+    public static void setProblem(Grid grid)
+    {
+        for (int i = 0; i < problem.xTiles.Length; i++)
+        {
+            for (int j = 0; j < problem.xTiles[i].yTiles.Length; j++)
+            {
+                for (int k = 0; k < problem.xTiles[i].yTiles[j].zTiles.Length; k++)
+                {
+                    problem.xTiles[i].yTiles[j].zTiles[k].hasCube = grid.GetActive(i, j, k);
+                }
+            }
+        }
+
     }
 
    public static bool checkSolution(Grid grid)
