@@ -12,11 +12,11 @@ public class Levels : MonoBehaviour
         grid = GetComponent<Grid>();
     }
     void Start()
-    {  
-        if (!ProblemHandler.loadProblem("Random2.JSON"))
+    {
+        if (!ProblemHandler.loadProblem("Level2x2A.JSON"))
         {
-            ProblemHandler.GenerateRandomProblemJSON(3,"Random2.JSON");
-            ProblemHandler.loadProblem("Random2.JSON");
+            ProblemHandler.GenerateRandomProblemJSON(2, "Level2x2A.JSON");
+            ProblemHandler.loadProblem("Level2x2A.JSON");
         }
         grid.Resize(ProblemHandler.GetProblemSize());
         GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(ProblemHandler.GetProblemSize(), grid.GetOffset());

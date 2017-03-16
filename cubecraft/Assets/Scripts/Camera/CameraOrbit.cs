@@ -25,7 +25,7 @@ public class CameraOrbit : MonoBehaviour
 
     public void MoveVertical(bool left)
     {
-        if (left)
+        if (!left)
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
                 animator.SetTrigger("Rotate0-90");

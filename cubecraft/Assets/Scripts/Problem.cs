@@ -12,14 +12,14 @@ public class Problem{
 
     public void Save(string filename){
         string json_str = JsonUtility.ToJson(this);
-        string path = Application.persistentDataPath + "/"+filename;
+        string path = Application.dataPath + "/Scripts/Levels/" + filename;
         System.IO.File.WriteAllText(path, json_str);
         Debug.Log("path is " + path);
     }
 
     public static Problem Load(string filename)
     {
-        string path = Application.persistentDataPath + "/" + filename;
+        string path = Application.dataPath + "/Scripts/Levels/" + filename;
         Problem problem;
         try
         {
