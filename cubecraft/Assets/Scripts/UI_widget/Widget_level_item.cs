@@ -30,8 +30,7 @@ public class Widget_level_item : MonoBehaviour {
        
        lvlImage.sprite = images[levelIndex-1];
          star.GetComponent<Image>().sprite = star_imgs[starNum - 1];
-        Debug.Log(starNum);
-
+       
 
         if (ifPlayed)
         {
