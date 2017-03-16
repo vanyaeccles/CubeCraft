@@ -14,8 +14,10 @@ public class Widget_level_panel : MonoBehaviour {
 	void Start () {
         array1 =     Instantiate(levelArray) as GameObject;
         array1.transform.SetParent(this.transform);
+        array1.GetComponent<Widget_level_array>().parentPanel = this;
         array2 = Instantiate(levelArray) as GameObject;
         array2.transform.SetParent(this.transform);
+        array2.GetComponent<Widget_level_array>().parentPanel = this;
         array1.SetActive(false);
         array2.SetActive(false);
 
@@ -27,12 +29,12 @@ public class Widget_level_panel : MonoBehaviour {
         * start :how to use wgt
         *
         */ 
-        this.addLevel(1,true,1);
-        this.addLevel(1,false,2);
-        this.addLevel(1,true,1);
+        this.addLevel(231,true,1);
+        this.addLevel(321,false,2);
+        this.addLevel(345,true,1);
 
-        this.addLevel(1, false, 1);
-        this.addLevel(1, true, 2);
+        this.addLevel(23, false, 1);
+        this.addLevel(2, true, 2);
         this.addLevel(1,true, 1);
      
         //end:how to use wgt
@@ -67,5 +69,11 @@ public class Widget_level_panel : MonoBehaviour {
             array2.GetComponent<Widget_level_array>().addLevel(levelID, levelTotal, ifPlayed, star);
         }
 
+    }
+
+
+    public void startLevel(int levelID)
+    {
+        Debug.Log("start: "+levelID);
     }
 }

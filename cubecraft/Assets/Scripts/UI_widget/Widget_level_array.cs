@@ -8,6 +8,8 @@ public class Widget_level_array : MonoBehaviour
     public GameObject levelItem;
     private int levelIndex = 0;
     GameObject[] levels = new GameObject[3];
+
+    public Widget_level_panel parentPanel;
     // Use this for initialization
     void Start()
     {
@@ -27,8 +29,14 @@ public class Widget_level_array : MonoBehaviour
 
         GameObject item = Instantiate(levelItem) as GameObject;
         item.transform.SetParent(this.transform);
+        item.GetComponent<Widget_level_item>().parentArray = this;
         item.GetComponent<Widget_level_item>().init(levelID,index, ifPlayed, star);
         levels[levelIndex] = item;
         levelIndex++;
+    }
+
+    public void startLevel(int levelID)
+    {
+        parentPanel.startLevel(levelID);
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Widget_level_item : MonoBehaviour {
 
 
-    public int LevelID;
+    public int levelID;
     public GameObject star;
     public Button lvlbutton;
     public Image lvlImage;
     public Sprite[] images;
-
+    public Widget_level_array parentArray;
     public Sprite[] star_imgs;
     public int levelIndex;//only for UI
 	// Use this for initialization
@@ -27,7 +27,9 @@ public class Widget_level_item : MonoBehaviour {
 
     public void init(int levelID, int levelIndex, bool ifPlayed,int starNum)
     {
+        this.levelID = levelID;
        
+
        lvlImage.sprite = images[levelIndex-1];
          star.GetComponent<Image>().sprite = star_imgs[starNum - 1];
        
@@ -45,6 +47,6 @@ public class Widget_level_item : MonoBehaviour {
 
     void processSelectLevelEvent()
     {
-
+        parentArray.startLevel(levelID);
     }
 }
