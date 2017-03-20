@@ -9,8 +9,10 @@ public class Widget_win_popup : MonoBehaviour {
     public Button backButton;
     public Button restartButton;
     public Button continueButton;
-	// Use this for initialization
-	void Start () {
+    public Sprite[] star_imgs;
+    public Image starImage;
+    // Use this for initialization
+    void Start () {
         backButton.onClick.AddListener(processBackEvent);
         restartButton.onClick.AddListener(processRestartEvent);
         continueButton.onClick.AddListener(processContinueEvent);
@@ -25,7 +27,12 @@ public class Widget_win_popup : MonoBehaviour {
 
     }
 
-
+    public void setStar(int i)
+    {
+       
+         starImage.sprite = star_imgs[i - 1];
+        
+    }
 	// Update is called once per frame
 	void Update () {
 		
