@@ -10,6 +10,7 @@ public class Widget_level_panel : MonoBehaviour {
     private GameObject array1;
     private GameObject array2;
     private int levelTotal=0;
+
 	// Use this for initialization
 	void Start () {
         array1 =     Instantiate(levelArray) as GameObject;
@@ -29,13 +30,13 @@ public class Widget_level_panel : MonoBehaviour {
         * start :how to use wgt
         *
         */ 
-        this.addLevel(231,true,1);
-        this.addLevel(321,false,2);
-        this.addLevel(345,true,1);
+        this.addLevel(Levels.getLevelID(1),true,1);
+        this.addLevel(Levels.getLevelID(2), false,2);
+        this.addLevel(Levels.getLevelID(3), true,1);
 
-        this.addLevel(23, false, 1);
-        this.addLevel(2, true, 2);
-        this.addLevel(1,true, 1);
+        this.addLevel(Levels.getLevelID(4), false, 1);
+        this.addLevel(Levels.getLevelID(5), true, 2);
+        this.addLevel(Levels.getLevelID(6), true, 2);
      
         //end:how to use wgt
 
@@ -74,6 +75,6 @@ public class Widget_level_panel : MonoBehaviour {
 
     public void startLevel(int levelID)
     {
-        Debug.Log("start: "+levelID);
+        Levels.LoadLevel(levelID);
     }
 }
