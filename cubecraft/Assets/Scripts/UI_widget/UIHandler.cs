@@ -263,4 +263,9 @@ public class UIHandler : MonoBehaviour
     {
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
     }
+
+    public void ContinueToNextProblem()
+    {
+        Levels.LoadNextLevel();
+    }
 }

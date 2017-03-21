@@ -92,4 +92,29 @@ public class Levels : MonoBehaviour
         PlayerPrefs.Save();
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
     }
+
+    public static void LoadNextLevel()
+    {
+        if (selectedLevelID == Level1ID)
+        {
+            selectedLevelID = Level2ID;
+        }
+        else if (selectedLevelID == Level2ID)
+        {
+            selectedLevelID = Level3ID;
+        }
+        else if(selectedLevelID == Level3ID)
+        {
+            selectedLevelID = Level4ID;
+        }
+        else if(selectedLevelID == Level4ID)
+        {
+            selectedLevelID = Level5ID;
+        }
+        else if(selectedLevelID == Level5ID)
+        {
+            selectedLevelID = Level6ID;
+        }
+        LoadLevel(selectedLevelID);
+    }
 }

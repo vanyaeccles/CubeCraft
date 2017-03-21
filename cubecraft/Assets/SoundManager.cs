@@ -11,24 +11,30 @@ public class SoundManager : MonoBehaviour {
     private AudioClip DeleteClip;
     private AudioClip WinClip;
     private AudioClip LoseClip;
+    private AudioClip TicTocClip;
     private AudioSource backgroundSource;
     private AudioSource FXSource;
+    private AudioSource TicTocSource;
 
     void Awake()
     {
         AudioSource[] sources= GameObject.Find("Main Camera").GetComponents<AudioSource>();
         backgroundSource = sources[0];
         FXSource = sources[1];
+        TicTocSource = sources[2];
         RotateClip= Resources.Load("Sounds/RotateSound") as AudioClip;
         MoveClip = Resources.Load("Sounds/MoveSound") as AudioClip;
         AddClip = Resources.Load("Sounds/AddSound") as AudioClip;
         WinClip = Resources.Load("Sounds/WinSound") as AudioClip;
         LoseClip = Resources.Load("Sounds/LoseSound") as AudioClip;
         DeleteClip = Resources.Load("Sounds/RemoveSound") as AudioClip;
+        TicTocClip = Resources.Load("Sounds/TimerSound") as AudioClip;
     }
     void Start()
     {
         backgroundSource.clip = backgroundMusic;
+        TicTocSource.clip = TicTocClip;
+        TicTocSource.loop = true;
     }
 
     public void playBackGroundMusic()
@@ -69,5 +75,26 @@ public class SoundManager : MonoBehaviour {
     {
         FXSource.clip = LoseClip;
         FXSource.Play();
+    }
+
+    public void playTicToc()
+    {
+        TicTocSource.Play();
+    }
+
+    public void stopTicToc()
+    {
+        TicTocSource.Stop();
+    }
+
+    public void setVolumeBackground(float normalizedPercent)
+    {
+        backgroundSource.volume = normalizedPercent;
+    }
+
+    public void setVolumeFX(float normalizedPercent)
+    {
+        FXSource.volume = normalizedPercent;
+        TicTocSource.volume = normalizedPercent;
     }
 }

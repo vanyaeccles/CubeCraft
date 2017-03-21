@@ -52,6 +52,11 @@ public class ProblemHandler
         bool vote2 = true;
         bool vote3 = true;
         bool vote4 = true;
+
+        bool vote5 = true;
+        bool vote6 = true;
+        bool vote7 = true;
+        bool vote8 = true;
         for (int i = 0; i < problem.xTiles.Length; i++)
         {
             for (int j = 0; j < problem.xTiles[i].yTiles.Length; j++)
@@ -60,6 +65,7 @@ public class ProblemHandler
                 {
                     int ii = (problem.xTiles.Length - 1) - i;
                     int kk = (problem.xTiles[i].yTiles[j].zTiles.Length - 1) - k;
+                    //check symmetric solutions
                     if (grid.GetTile(i, j, k).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
                     {
                         vote1 = false;
@@ -76,10 +82,27 @@ public class ProblemHandler
                     {
                         vote4 = false;
                     }
+                    //check inverse solutions
+                    if (grid.GetTile(k, j, i).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
+                    {
+                        vote5 = false;
+                    }
+                    if (grid.GetTile(k, j, ii).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
+                    {
+                        vote6 = false;
+                    }
+                    if (grid.GetTile(kk, j, i).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
+                    {
+                        vote7 = false;
+                    }
+                    if (grid.GetTile(kk, j, ii).GetIsOccupied() == problem.xTiles[i].yTiles[j].zTiles[k].hasCube)
+                    {
+                        vote8 = false;
+                    }
                 }
             }
         }
-        return (vote1 || vote2 || vote3 || vote4);
+        return (vote1 || vote2 || vote3 || vote4||vote5||vote6||vote7||vote8);
     }
 
     public static void GenerateRandomProblemJSON(int dimension,string path)

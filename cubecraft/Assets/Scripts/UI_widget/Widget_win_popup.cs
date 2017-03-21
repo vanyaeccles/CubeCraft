@@ -49,7 +49,7 @@ public class Widget_win_popup : MonoBehaviour {
 
     void processContinueEvent()
     {
-        uiHandler.CancelPress();
+        uiHandler.ContinueToNextProblem();
     }
 }
 
