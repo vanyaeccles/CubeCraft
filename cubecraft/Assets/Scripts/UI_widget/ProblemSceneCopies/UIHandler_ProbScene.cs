@@ -26,6 +26,8 @@ public class UIHandler_ProbScene : MonoBehaviour
 
     private CameraOrbit mcamera;
     private Levels levelchecker;
+    private SceneLoader sceneloader;
+    private SoundManager soundmanager;
     //private Grid grid;
 
 
@@ -49,6 +51,8 @@ public class UIHandler_ProbScene : MonoBehaviour
     {
         //movement = GameObject.Find("Player Controlled Cube").GetComponent<Movement>();
         mcamera = GameObject.Find("Main Camera").GetComponent<CameraOrbit>();
+        soundmanager = GameObject.Find("Main Camera").GetComponent<SoundManager>();
+        sceneloader = GameObject.Find("SceneManager").GetComponent<SceneLoader>();
         //levelchecker = GameObject.Find("Grid").GetComponent<Levels>();
         //grid = GameObject.Find("Grid").GetComponent<Grid>();
     }
@@ -61,8 +65,9 @@ public class UIHandler_ProbScene : MonoBehaviour
         //-refactor
 
         //Initialise timer
-        startTime = Time.time;
-        //startTime = 30;
+        //startTime = Time.time;
+        startTime = 30;
+        soundmanager.playTicToc();
         InitialiseUI();
     }
 
@@ -142,7 +147,7 @@ public class UIHandler_ProbScene : MonoBehaviour
 
         //amount of time since timer started (in seconds)
         //int t = (int)(startTime - Time.time);
-        int t = (int)(Time.time - startTime);
+        int t = (int)(startTime - Time.time);
 
         string minutes = (t / 60).ToString();
         // limits float to "fx" decimal places
@@ -151,9 +156,14 @@ public class UIHandler_ProbScene : MonoBehaviour
         if (t % 60 < 10)
             seconds = "0" + seconds;
 
-        if (t > 5)
+        if (t < 15)
             timer.SetTimerTextRed();
 
+        if (t == 0)
+        {
+            soundmanager.stopTicToc();
+            sceneloader.LoadSolutionScene();
+        }
 
         timer.SetTime(minutes, seconds);
         //}

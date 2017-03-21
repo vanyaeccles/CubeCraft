@@ -12,7 +12,7 @@ public class Widget_timer_ProbScene : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        timer_text.material.color = Color.black;
     }
 
     // Update is called once per frame
@@ -36,7 +36,6 @@ public class Widget_timer_ProbScene : MonoBehaviour {
 
     public void SetTimerTextRed()
     {
-        //@TODO this changes the colour of all 'Sprites-Default', dont do it
-        //timer_text.material.color = Color.white;
+        timer_text.material.color = Color.red;
     }
 }
