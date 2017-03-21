@@ -34,6 +34,7 @@ public class Visibilty : MonoBehaviour {
         if (grid.GetSize() == 3)
         {
             GameObject.Find("Grid").transform.localScale = new Vector3(.6f, .6f, .6f);
+            Debug.LogError("called");
             GameObject.Find("Player Controlled Cube").transform.localScale = new Vector3(.69f, .69f, .69f);
         }
 
