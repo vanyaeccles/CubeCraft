@@ -35,6 +35,10 @@ public class SoundManager : MonoBehaviour {
         backgroundSource.clip = backgroundMusic;
         TicTocSource.clip = TicTocClip;
         TicTocSource.loop = true;
+        //set the volumes
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
+        setVolumeBackground(PlayerPrefs.GetFloat("MusicVolume")*masterVolume);
+        setVolumeFX(PlayerPrefs.GetFloat("FXVolume") * masterVolume);
     }
 
     public void playBackGroundMusic()
