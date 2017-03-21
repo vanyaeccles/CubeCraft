@@ -37,6 +37,7 @@ namespace Cube
             this.size = size;
             AllocateGrid(size);
             SetupGrid(size);
+
         }
 
         void AllocateGrid(int size)

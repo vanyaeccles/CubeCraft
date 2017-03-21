@@ -219,7 +219,8 @@ public class UIHandler : MonoBehaviour
 
         //if (levelchecker.correctSolution)
         //  SolutionCheckPass();       
-        if (ProblemHandler.checkSolution(grid))
+        ProblemHandler.Vec4i score;
+        if (ProblemHandler.checkSolution(grid,out score))
         {
             SolutionCheckPass();
         }
