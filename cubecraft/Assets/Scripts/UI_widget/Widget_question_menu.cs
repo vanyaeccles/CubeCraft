@@ -21,11 +21,10 @@ public class Widget_question_menu : MonoBehaviour {
 	}
     void processNextQuesEvent()
     {
-        Debug.Log("This will load Another Problem");
+        Levels.LoadNextLevel();
     }
     void processConfirmEvent()
     {
-        Debug.Log("Loading Scene 'Sprint3'");
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
         //SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
     }

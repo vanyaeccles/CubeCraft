@@ -115,6 +115,10 @@ public class Levels : MonoBehaviour
         {
             selectedLevelID = Level6ID;
         }
+        else if(selectedLevelID == Level6ID)
+        {
+            selectedLevelID = Level1ID;
+        }
         LoadLevel(selectedLevelID);
     }
 }
