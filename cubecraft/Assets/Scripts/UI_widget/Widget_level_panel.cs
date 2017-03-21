@@ -29,15 +29,16 @@ public class Widget_level_panel : MonoBehaviour {
         * 
         * start :how to use wgt
         *
-        */ 
-        this.addLevel(Levels.getLevelID(1),true,1);
-        this.addLevel(Levels.getLevelID(2), false,2);
-        this.addLevel(Levels.getLevelID(3), true,1);
+        */
+        Debug.Log("stars fur level 1 " + Levels.GetStars(Levels.getLevelID(1)));
+        this.addLevel(Levels.getLevelID(1),Levels.GetStars(Levels.getLevelID(1)) > 0 , Levels.GetStars(Levels.getLevelID(1)));
+        this.addLevel(Levels.getLevelID(2), Levels.GetStars(Levels.getLevelID(2)) > 0, Levels.GetStars(Levels.getLevelID(2)));
+        this.addLevel(Levels.getLevelID(3), Levels.GetStars(Levels.getLevelID(3)) > 0, Levels.GetStars(Levels.getLevelID(3)));
 
-        this.addLevel(Levels.getLevelID(4), false, 1);
-        this.addLevel(Levels.getLevelID(5), true, 2);
-        this.addLevel(Levels.getLevelID(6), true, 2);
-     
+        this.addLevel(Levels.getLevelID(4), Levels.GetStars(Levels.getLevelID(4)) > 0, Levels.GetStars(Levels.getLevelID(4)));
+        this.addLevel(Levels.getLevelID(5), Levels.GetStars(Levels.getLevelID(5)) > 0, Levels.GetStars(Levels.getLevelID(5)));
+        this.addLevel(Levels.getLevelID(6), Levels.GetStars(Levels.getLevelID(6)) > 0, Levels.GetStars(Levels.getLevelID(6)));
+
         //end:how to use wgt
 
     }

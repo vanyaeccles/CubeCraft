@@ -31,6 +31,7 @@ public class Widget_level_item : MonoBehaviour {
        
 
        lvlImage.sprite = images[levelIndex-1];
+        if(starNum>0)
          star.GetComponent<Image>().sprite = star_imgs[starNum - 1];
        
 

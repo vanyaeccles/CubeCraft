@@ -91,17 +91,19 @@ public class UIHandler : MonoBehaviour
     public void ConfirmPress()
     {
         ShutDownAll();
-        //SceneManager.LoadScene("GameplayScene");
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
-        //SceneManager.LoadScene("Sprint3");
         //Back to main menu
     }
 
-    public void SolutionCheckPass()
+    public void SolutionCheckPass(int stars)
     {
         ShutDownAll();
         
         winPopWnd.show();
+        winPopWnd.setStar(stars);
+        Levels.SaveProgress(stars);
+       // PlayerPrefs.DeleteAll();
+        //winPopWnd.
         StopTimer();
         GameObject.Find("Main Camera").GetComponent<SoundManager>().playWin();
     }
@@ -127,7 +129,6 @@ public class UIHandler : MonoBehaviour
     {
         ShutDownAll();
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
-        //SceneManager.LoadScene("StartScene");
         // Do something else
     }
 
@@ -223,16 +224,13 @@ public class UIHandler : MonoBehaviour
     }
 
     public void CheckPress()
-    {
-        // @TODO JSON reimplementation
-        //levelchecker.CheckLevel1Solution();
-
-        //if (levelchecker.correctSolution)
-        //  SolutionCheckPass();       
+    {          
         ProblemHandler.Vec4i score;
-        if (ProblemHandler.checkSolution(grid,out score))
+        ProblemHandler.checkSolution(grid,out score);
+        int stars=ScoreCalculator.StarRater(score);
+        if (stars>0)
         {
-            SolutionCheckPass();
+            SolutionCheckPass(stars);
         }
         else
         {

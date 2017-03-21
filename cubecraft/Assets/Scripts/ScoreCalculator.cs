@@ -18,7 +18,7 @@ public class ScoreCalculator : MonoBehaviour {
 		
 	}
 
-    public int StarRater(ProblemHandler.Vec4i score)
+    public static int StarRater(ProblemHandler.Vec4i score)
     {
         //Grid grid;
         //ProblemHandler.Vec4i score;

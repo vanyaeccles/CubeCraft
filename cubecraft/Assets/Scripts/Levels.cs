@@ -91,6 +91,7 @@ public class Levels : MonoBehaviour
         PlayerPrefs.SetInt("selectedLevel", levelID);
         PlayerPrefs.Save();
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
+        Debug.Log("mkay");
     }
 
     public static void LoadNextLevel()
@@ -121,4 +122,63 @@ public class Levels : MonoBehaviour
         }
         LoadLevel(selectedLevelID);
     }
+
+    public static void SaveProgress(int stars)
+    {
+        string key = Level1Filename;
+        if(selectedLevelID == Level2ID)
+        {
+            key = Level2Filename;
+        }
+        else if (selectedLevelID == Level3ID)
+        {
+            key = Level3Filename;
+        }
+        else if (selectedLevelID == Level4ID)
+        {
+            key = Level4Filename;
+        }
+        else if (selectedLevelID == Level5ID)
+        {
+            key = Level5Filename;
+        }
+        else if (selectedLevelID == Level6ID)
+        {
+            key = Level6Filename;
+        }
+        key += ".stars";
+        if (PlayerPrefs.GetInt(key,0)<stars)
+        {
+            PlayerPrefs.SetInt(key, stars);
+        }
+    }
+
+    public static int GetStars(int levelID)
+    {
+        string key = Level1Filename;
+        if (levelID == Level2ID)
+        {
+            key = Level2Filename;
+        }
+        else if (levelID == Level3ID)
+        {
+            key = Level3Filename;
+        }
+        else if (levelID == Level4ID)
+        {
+            key = Level4Filename;
+        }
+        else if (levelID == Level5ID)
+        {
+            key = Level5Filename;
+        }
+        else if (levelID == Level6ID)
+        {
+            key = Level6Filename;
+        }
+        key += ".stars";
+        return PlayerPrefs.GetInt(key, 0);
+    }
+
+   // public static 
 }
