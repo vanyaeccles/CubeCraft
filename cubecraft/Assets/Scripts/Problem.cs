@@ -12,14 +12,15 @@ public class Problem{
 
     public void Save(string filename){
         string json_str = JsonUtility.ToJson(this);
-        string path = Application.dataPath + "/Resources/Levels/" + filename;
-        System.IO.File.WriteAllText(path, json_str);
+        string path = Application.streamingAssetsPath + "/Levels/" + filename;
         Debug.Log("path is " + path);
     }
 
     public static Problem Load(string filename)
     {
-        string path = Application.dataPath + "/Resources/Levels/" + filename;
+        Debug.Log("SA is " + Application.streamingAssetsPath);
+        string path = Application.streamingAssetsPath + "/Levels/" + filename;
+        Debug.Log("path iz " + path);
         Problem problem;
         try
         {

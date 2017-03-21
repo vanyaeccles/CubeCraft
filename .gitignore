@@ -6,3 +6,5 @@ cubecraft/Temp/
 *.suo
 cubecraft/Assets/moveCtest.cs
 cubecraft/Assets/moveCtest.cs.meta
+Builds/
+
