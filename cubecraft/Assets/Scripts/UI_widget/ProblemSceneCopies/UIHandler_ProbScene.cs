@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIHandler_ProbScene : MonoBehaviour
 {
 
     private float startTime;
+    private float timeCounter;
     private bool finished = false;
     
 
@@ -57,6 +59,7 @@ public class UIHandler_ProbScene : MonoBehaviour
         //grid = GameObject.Find("Grid").GetComponent<Grid>();
     }
 
+
     // Use this for initialization
     void Start()
     {
@@ -65,9 +68,10 @@ public class UIHandler_ProbScene : MonoBehaviour
         //-refactor
 
         //Initialise timer
+        resetTimer();
         //startTime = Time.time;
-        startTime = 30;
         soundmanager.playTicToc();
+        InvokeRepeating("CountDown", 0.0f, 1.0f);
         InitialiseUI();
     }
 
@@ -144,10 +148,10 @@ public class UIHandler_ProbScene : MonoBehaviour
     {
         //if(!finished)
         //{
-
+        timeCounter += Time.deltaTime;
         //amount of time since timer started (in seconds)
         //int t = (int)(startTime - Time.time);
-        int t = (int)(startTime - Time.time);
+        int t = (int)(startTime -timeCounter);
 
         string minutes = (t / 60).ToString();
         // limits float to "fx" decimal places
@@ -173,6 +177,17 @@ public class UIHandler_ProbScene : MonoBehaviour
         finished = true;
     }
 
+    void resetTimer()
+    {
+        startTime = 30;
+        timeCounter = 0;
+        Debug.Log("Reset");
+    }
+
+    void CountDown()
+    {
+        timer.CountDown();
+    }
 
     //public void switch2GrabMode()
     //{
@@ -216,7 +231,6 @@ public class UIHandler_ProbScene : MonoBehaviour
         mcamera.MoveVertical(left);
 
     }
-
     //public void CheckPress()
     //{
     //    // @TODO JSON reimplementation

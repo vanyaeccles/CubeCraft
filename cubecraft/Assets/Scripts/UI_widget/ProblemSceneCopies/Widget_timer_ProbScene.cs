@@ -8,11 +8,18 @@ public class Widget_timer_ProbScene : MonoBehaviour {
     public UIHandler_ProbScene uiHandler;
     public GameObject panel;
     public Text timer_text;
+    public Image time_bar;
+
+    float second;
 
     // Use this for initialization
     void Start()
     {
-        timer_text.material.color = Color.black;
+        //timer_text.material.color = Color.black;
+
+        time_bar.fillAmount = 1.0f;
+
+        second = 1.0f / 30;
     }
 
     // Update is called once per frame
@@ -21,6 +28,16 @@ public class Widget_timer_ProbScene : MonoBehaviour {
 
     }
 
+    public void CountDown()
+    {
+        time_bar.fillAmount -= second;
+
+        Debug.Log("Tick");
+        // When the countdown bar reaches zero, check the solution
+        //if (time_bar.fillAmount == 0.0f)
+            //uiHandler.CheckPress();
+
+    }
 
 
     public void setTimerText(string text)
@@ -36,6 +53,6 @@ public class Widget_timer_ProbScene : MonoBehaviour {
 
     public void SetTimerTextRed()
     {
-        timer_text.material.color = Color.red;
+        //timer_text.material.color = Color.white;
     }
 }

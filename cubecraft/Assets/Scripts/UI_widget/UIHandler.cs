@@ -63,6 +63,7 @@ public class UIHandler : MonoBehaviour
 
         //Initialise timer
         startTime = Time.time;
+        InvokeRepeating("CountDown", 0.0f, 1.0f);
         InitialiseUI();
     }
 
@@ -149,12 +150,16 @@ public class UIHandler : MonoBehaviour
             //amount of time since timer started (in seconds)
             int t = (int)(Time.time - startTime);
 
+            Debug.Log(t);
             string minutes = (t / 60).ToString();
             // limits float to "fx" decimal places
             string seconds = (t % 60).ToString("f0");
 
+
             if (t % 60 < 10)
                 seconds = "0" + seconds;
+
+                //timer.CountDown();
 
             timer.SetTime(minutes, seconds);
         //}
@@ -162,6 +167,11 @@ public class UIHandler : MonoBehaviour
     public void StopTimer()
     {
         finished = true;
+    }
+
+    void CountDown()
+    {
+        timer.CountDown();
     }
 
 
