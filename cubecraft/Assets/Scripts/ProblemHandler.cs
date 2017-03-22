@@ -7,6 +7,7 @@ public class ProblemHandler
 
     public struct Vec4i
     {
+        //FP,FN,TP,TN
         public int i, j, k, l;
 
         public Vec4i(int i,int j,int k, int l)
