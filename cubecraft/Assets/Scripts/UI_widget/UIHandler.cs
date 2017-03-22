@@ -23,7 +23,8 @@ public class UIHandler : MonoBehaviour
     public Widget_four_direction_operation fourDirMenu;
     public Widget_layer_operation layerMoveMenu;
 
-
+    //test for star rating
+    public int t;
 
     private Movement movement;
     private CameraOrbit mcamera;
@@ -148,11 +149,12 @@ public class UIHandler : MonoBehaviour
     {
         //if(!finished)
         //{
-            //amount of time since timer started (in seconds)
-            int t = (int)(Time.time - startTime);
+        //amount of time since timer started (in seconds)
+        //int t = (int)(Time.time - startTime);
+        t = (int)(Time.time - startTime);
 
-            Debug.Log(t);
-            string minutes = (t / 60).ToString();
+        //Debug.Log(t);
+        string minutes = (t / 60).ToString();
             // limits float to "fx" decimal places
             string seconds = (t % 60).ToString("f0");
 

@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour {
     void Awake()
     {
         activeSceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(activeSceneName);
+        //Debug.Log(activeSceneName);
     }
 
     public bool isProblemScene()
