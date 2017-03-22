@@ -15,7 +15,7 @@ public class restartConfirm : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Confirm() {
-        Debug.Log("confirm");
+        //Debug.Log("confirm");
         
 		
 	}

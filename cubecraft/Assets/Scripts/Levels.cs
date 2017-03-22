@@ -55,7 +55,7 @@ public class Levels : MonoBehaviour
         else
         {
             ProblemHandler.loadProblem(Level1Filename);
-            Debug.Log("could not find a legit player preference so the first scene is loading");
+            //Debug.Log("could not find a legit player preference so the first scene is loading");
         }
         grid.Resize(ProblemHandler.GetProblemSize());
         GameObject.Find("Main Camera").GetComponent<CameraOrbit>().UpdatePivot(ProblemHandler.GetProblemSize(), grid.GetOffset());
@@ -91,7 +91,6 @@ public class Levels : MonoBehaviour
         PlayerPrefs.SetInt("selectedLevel", levelID);
         PlayerPrefs.Save();
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadProblemScene();
-        Debug.Log("mkay");
     }
 
     public static void LoadNextLevel()

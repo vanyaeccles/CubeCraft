@@ -261,7 +261,7 @@ namespace Cube
             {
                 if (!cubeAtPos)
                 {
-                    Debug.Log("You place the currently grabbed cube.");
+                    //Debug.Log("You place the currently grabbed cube.");
                     holdingCube = false;
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileMode();
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(true);
@@ -269,14 +269,14 @@ namespace Cube
 
                 if (cubeAtPos)
                 {
-                    Debug.Log("There is already a cube at this position!");
+                    //Debug.Log("There is already a cube at this position!");
                 }
             }
             else
             {
                 if (cubeAtPos)
                 {
-                    Debug.Log("You grab the cube at this position");
+                    //Debug.Log("You grab the cube at this position");
                     holdingCube = true;
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2GrabMode();
                     //remove the placedCube from the cubehandler list, set position to ghostcube position
@@ -285,7 +285,7 @@ namespace Cube
                 }
                 else if (!cubeAtPos)
                 {
-                    Debug.Log("There is nothing to grab!");
+                    //Debug.Log("There is nothing to grab!");
                 }
             }
             UpdateUI();
@@ -296,7 +296,7 @@ namespace Cube
             bool cubeAtPos = grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetIsOccupied();
             if (holdingCube)
             {
-                Debug.Log("You remove the cube that you were holding.");
+                //Debug.Log("You remove the cube that you were holding.");
                 grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                 holdingCube = false;
                 GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
@@ -307,7 +307,7 @@ namespace Cube
             {
                 if (!cubeAtPos)
                 {
-                    Debug.Log("You add a new cube at this position.");
+                    //Debug.Log("You add a new cube at this position.");
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(true);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeDelete();
                     PlayAddSound();
@@ -315,7 +315,7 @@ namespace Cube
                 }
                 else if (cubeAtPos)
                 {
-                    Debug.Log("You remove the cube at this position.");
+                    //Debug.Log("You remove the cube at this position.");
 
                     grid.GetTile(currentTile.i, currentTile.j, currentTile.k).SetActive(false);
                     GameObject.Find("UIController").GetComponent<UIHandler>().switch2TileModeAdd();
