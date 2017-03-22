@@ -8,11 +8,13 @@ public class Widget_question_menu : MonoBehaviour {
 
     public Button nextQuesButton;
     public Button confirmButton;
+    public Button backButton;
     
 	// Use this for initialization
 	void Start () {
         nextQuesButton.onClick.AddListener(processNextQuesEvent);
         confirmButton.onClick.AddListener(processConfirmEvent);
+        backButton.onClick.AddListener(processBackEvent);
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,10 @@ public class Widget_question_menu : MonoBehaviour {
     void processConfirmEvent()
     {
         GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
-        //SceneManager.LoadScene("Sprint3", LoadSceneMode.Single); //Single vs Additive, single will close other scenes, additive will not
+    }
+
+    void processBackEvent()
+    {
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
     }
 }

@@ -44,7 +44,7 @@ public class Widget_win_popup : MonoBehaviour {
     }
     void processRestartEvent()
     {
-        uiHandler.RestartPress();
+        uiHandler.ReloadProblemScene();
     }
 
     void processContinueEvent()
