@@ -31,9 +31,8 @@ public class Widget_timer : MonoBehaviour {
         time_bar.fillAmount -= second;
 
         // When the countdown bar reaches zero, check the solution, DONE IN UI HANDLER
-        if (time_bar.fillAmount == 0.0f)
-            uiHandler.CheckPress();
-        //sceneloader.LoadSolutionScene();
+        //if (time_bar.fillAmount == 0.0f)
+            //uiHandler.CheckPress();
 
 
     }
