@@ -28,13 +28,13 @@ public class ScoreCalculator : MonoBehaviour {
         //decides time threshold for 3 stars. 2x2 = 30 seconds. 3x3 = 60 seconds.
         if (grid.GetSize() == 2) timeThreshold = 30;
 
-        Debug.LogError(timeThreshold);
+        //Debug.Log(timeThreshold);
 
         //FP,FN,TP,TN
         //TP / (TP + FP)
         percent = (float)(score.k) / (float)(score.k + score.i + score.j);
 
-        Debug.LogError(percent);
+        //Debug.Log(percent);
 
         //Below 40% is 0 stars
         //Between 40% and 100% is 1 star

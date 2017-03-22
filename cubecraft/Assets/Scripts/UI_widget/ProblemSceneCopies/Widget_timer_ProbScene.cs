@@ -32,7 +32,7 @@ public class Widget_timer_ProbScene : MonoBehaviour {
     {
         time_bar.fillAmount -= second;
 
-        Debug.Log("Tick");
+        //Debug.Log("Tick");
         // When the countdown bar reaches zero, check the solution
         //if (time_bar.fillAmount == 0.0f)
             //uiHandler.CheckPress();

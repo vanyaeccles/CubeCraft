@@ -14,7 +14,7 @@ public class SolutionList: MonoBehaviour {
         path = Application.streamingAssetsPath + "/Solutions.json";
         jsonString = File.ReadAllText(path);
         Solutions solution = JsonUtility.FromJson<Solutions>(jsonString);
-        Debug.Log(solution.Level);
+        //Debug.Log(solution.Level);
     }
   
 }

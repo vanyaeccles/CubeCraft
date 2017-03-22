@@ -13,19 +13,19 @@ public class Problem{
     public void Save(string filename){
         string json_str = JsonUtility.ToJson(this);
         string path = Application.streamingAssetsPath + "/Levels/" + filename;
-        Debug.Log("path is " + path);
+        //Debug.Log("path is " + path);
     }
 
     public static Problem Load(string filename)
     {
-        Debug.Log("SA is " + Application.streamingAssetsPath);
+        //Debug.Log("SA is " + Application.streamingAssetsPath);
         string path = Application.streamingAssetsPath + "/Levels/" + filename;
-        Debug.Log("path iz " + path);
+        //Debug.Log("path iz " + path);
         Problem problem;
         try
         {
             string json_str = System.IO.File.ReadAllText(path);
-            Debug.Log("Loaded from " + path);
+            //Debug.Log("Loaded from " + path);
             problem = JsonUtility.FromJson<Problem>(json_str);
         }
         catch

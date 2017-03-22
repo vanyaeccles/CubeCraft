@@ -30,7 +30,7 @@ public class Widget_level_panel : MonoBehaviour {
         * start :how to use wgt
         *
         */
-        Debug.Log("stars fur level 1 " + Levels.GetStars(Levels.getLevelID(1)));
+        //Debug.Log("stars fur level 1 " + Levels.GetStars(Levels.getLevelID(1)));
         this.addLevel(Levels.getLevelID(1),Levels.GetStars(Levels.getLevelID(1)) > 0 , Levels.GetStars(Levels.getLevelID(1)));
         this.addLevel(Levels.getLevelID(2), Levels.GetStars(Levels.getLevelID(2)) > 0, Levels.GetStars(Levels.getLevelID(2)));
         this.addLevel(Levels.getLevelID(3), Levels.GetStars(Levels.getLevelID(3)) > 0, Levels.GetStars(Levels.getLevelID(3)));
