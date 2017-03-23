@@ -73,18 +73,31 @@ namespace Cube
         void Start()
         {
             currentTile = new Vector3i(0, 0, 0);
+            UpdatePosition();
             checkDirection();
         }
 
+        int it_c = 0;
         // Update is called once per frame
         void Update()
         {
+            if (it_c == 0)
+            {
+                UpdatePosition();
+            }
+            it_c++;
+            
             checkDirection();//@TODO called by the UI handler and Keyboard Input when orientation is changed
         }
 
         private void UpdatePosition()
         {
+            //transform.S
+           // Debug.Log("local before " + transform.localScale);
+           // transform.localScale = grid.GetTile(currentTile.i, currentTile.j, currentTile.k).GetGameObject().transform.parent.lossyScale*100.20f;
            transform.position = grid.GetTile(currentTile.i,currentTile.j, currentTile.k).GetGameObject().transform.position;
+           // Debug.Log("local after " + transform.localScale);
+            //Debug.LogError("err");
         }
 
         void UpdateUI()

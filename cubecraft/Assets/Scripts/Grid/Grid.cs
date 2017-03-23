@@ -53,8 +53,12 @@ namespace Cube
                 {
                     for (int k = 0; k < size; k++)
                     {
-                        Destroy(tiles[i, j,k].GetGameObject());
-                        tiles[i,j,k] = null;
+                        if (tiles[i, j, k] != null)
+                        {
+                            if (tiles[i, j, k].GetGameObject() != null)
+                                Destroy(tiles[i, j, k].GetGameObject());
+                            tiles[i, j, k] = null;
+                        }
                     }
                 }
             }
