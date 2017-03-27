@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInstructionsProblemScene : MonoBehaviour {
+public class GameInstructionsProblemScene : MonoBehaviour
+{
 
     public GameObject[] InstructionsHolder;
     public GameObject[] InstructionsHolder2;
-    public int buttonPressed = 0;
+    private int buttonPressed = 0;
+
     public void instructions()
     {
         //if (buttonPressed == 0)
@@ -15,16 +17,17 @@ public class GameInstructionsProblemScene : MonoBehaviour {
         //    {
         //        InstructionsHolder[i].SetActive(!InstructionsHolder[i].activeInHierarchy);
 
-        //         }
-        //        buttonPressed = buttonPressed + 1;
-        //        //}
-        //        //}
+        //    }
+        //    buttonPressed = buttonPressed + 1;
+        //    //}
+        //    //}
 
 
-        //        // public void instructions2()
-        //        // {
+        //    // public void instructions2()
+        //    // {
 
-        //    } else if(buttonPressed == 1)
+        //}
+        //else if (buttonPressed == 1)
         //{
         //    for (int i = 0; i < InstructionsHolder.Length; i++)
         //    {
@@ -32,11 +35,11 @@ public class GameInstructionsProblemScene : MonoBehaviour {
 
         //    }
         //    for (int i = 0; i < InstructionsHolder2.Length; i++)
-        //        {
-        //         InstructionsHolder2[i].SetActive(!InstructionsHolder2[i].activeInHierarchy);
-        //        }
-        //        buttonPressed = buttonPressed - 1;
+        //    {
+        //        InstructionsHolder2[i].SetActive(!InstructionsHolder2[i].activeInHierarchy);
         //    }
+        //    buttonPressed = buttonPressed - 1;
+        //}
         if (buttonPressed == 0)
         {
             for (int i = 0; i < InstructionsHolder.Length; i++)
@@ -83,6 +86,7 @@ public class GameInstructionsProblemScene : MonoBehaviour {
             buttonPressed = buttonPressed - 2;
 
         }
-        }
+    }
 
-    } 
+}
+ 
