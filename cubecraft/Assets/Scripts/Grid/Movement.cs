@@ -429,6 +429,11 @@ namespace Cube
             if (grid.GetTile(checker.i, checker.j, checker.k).GetIsOccupied() && holdingCube) return false;
             return true;
         }
+
+        public bool isHoldingCube()
+        {
+            return holdingCube;
+        }
     }
 
 }

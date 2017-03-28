@@ -136,6 +136,10 @@ public class Visibilty : MonoBehaviour {
                 }
             }
         }
+        if (movement.isHoldingCube())
+        {
+            grid.GetTile(currentTile.i,currentTile.j,currentTile.k).GetGameObject().GetComponent<Renderer>().material = occupiedMat;
+        }
     }
 
     void UpdateVisibilityRaycast()
