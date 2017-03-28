@@ -7,7 +7,9 @@ public class Visibilty : MonoBehaviour {
     Grid grid;
     Movement movement;
     Transform ghostCubeTransform;
-    public Material transparentMat;
+//    public Material transparentMat;
+    public Material transparentMat1;
+    public Material transparentMat2;
     public Material occupiedMat;
     public Material gridMat;
 
@@ -42,25 +44,49 @@ public class Visibilty : MonoBehaviour {
         
     }
 
-    bool isTileOpaque(int i,int j, int k,Vector3i currentTile,Vector3i viewDirection)
+    int TileDepth(int i,int j,int k,Vector3i currentTile,Vector3i viewDirection)
     {
         if(viewDirection==new Vector3i(0, 0, 1))
         {
-            if (j < currentTile.j || k > currentTile.k)
+            return Mathf.Max(currentTile.k - k,j-currentTile.j);
+        }
+        else if (viewDirection==new Vector3i(1, 0, 0))
+        {
+            return Mathf.Max(currentTile.i - i,j-currentTile.j);
+        }
+        else if(viewDirection==new Vector3i(0, 0, -1))
+        {
+            return Mathf.Max(k - currentTile.k,j-currentTile.j);
+        }
+        else if(viewDirection == new Vector3i(-1, 0, 0))
+        {
+            return Mathf.Max(i - currentTile.i,j-currentTile.j);
+        }
+        return -1;
+    }
+
+    bool isTileOpaque(int i,int j, int k,Vector3i currentTile,Vector3i viewDirection)
+    {
+        i += viewDirection.i;
+        j -= 1;
+        k += viewDirection.k;
+        if(viewDirection==new Vector3i(0, 0, 1))
+        {
+            if (j < currentTile.j && k > currentTile.k)
                 return true;
         }
         else if(viewDirection == new Vector3i(1, 0, 0)){
-            if (j < currentTile.j || i > currentTile.i)
+            if (j < currentTile.j && i > currentTile.i)
                 return true;
         }
         else if (viewDirection == new Vector3i(0, 0, -1))
         {
-            if (j < currentTile.j || k < currentTile.k)
+            if (j < currentTile.j && k < currentTile.k)
                 return true;
         }
         else if (viewDirection == new Vector3i(-1, 0, 0))
         {
-            if (j < currentTile.j || i < currentTile.i)
+            if (j < currentTile.j && i < currentTile.i)
                 return true;
         }
             return false;
@@ -91,7 +117,20 @@ public class Visibilty : MonoBehaviour {
                     {
                         if (grid.GetTile(i, j, k).GetIsOccupied())
                         {
-                            grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat;
+                            if (TileDepth(i, j, k, currentTile, viewDirection) == 1)
+                            {
+                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat1;
+                            }
+                            else if (TileDepth(i, j, k, currentTile, viewDirection) == 2)
+                            {
+                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat2;
+                            }
+                            else
+                            {
+                                grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat2;
+                               // Debug.LogError("Problem with depth:"+ TileDepth(i, j, k, currentTile, viewDirection)+" for "+i+","+k+" and "+currentTile.i+","+currentTile.k);
+                            }
+                            //grid.GetTile(i, j, k).GetGameObject().GetComponent<Renderer>().material = transparentMat1;
                         }
                     }
                 }
@@ -127,7 +166,7 @@ public class Visibilty : MonoBehaviour {
             Vector3i indices = hits[i].transform.GetComponent<TileInfo>().GetTileIndex();
             if (grid.GetTile(indices.i, indices.j, indices.k).GetIsOccupied())
             {
-                hits[i].transform.GetComponent<Renderer>().material = transparentMat;
+                //hits[i].transform.GetComponent<Renderer>().material = transparentMat;
             }
         }
     }
