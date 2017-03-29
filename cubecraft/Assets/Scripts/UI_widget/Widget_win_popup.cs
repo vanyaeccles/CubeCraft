@@ -11,6 +11,8 @@ public class Widget_win_popup : MonoBehaviour {
     public Button continueButton;
     public Sprite[] star_imgs;
     public Image starImage;
+
+    public Text msg;
     // Use this for initialization
     void Start () {
         backButton.onClick.AddListener(processBackEvent);
@@ -31,6 +33,18 @@ public class Widget_win_popup : MonoBehaviour {
     {
        
          starImage.sprite = star_imgs[i - 1];
+        switch (i)
+        {
+            case 1:
+                msg.text = "Watch out where you place cubes!";
+                break;
+            case 2:
+                msg.text = "Try solving it faster next time!";
+                break;
+            case 3:
+                msg.text = "Perfect!";
+                break;
+        }
         
     }
 	// Update is called once per frame

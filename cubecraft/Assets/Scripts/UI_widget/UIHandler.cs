@@ -86,13 +86,21 @@ public class UIHandler : MonoBehaviour
     public void RestartPress()
     {
         ShutDownAll();
-        confirmPopWnd.show();
+        confirmPopWnd.show(0);
     }
 
-    public void ConfirmPress()
+    public void ConfirmPress(int type)
     {
-        ShutDownAll();
-        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
+        if (type == 0)
+        {
+            ShutDownAll();
+            GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadSolutionScene();
+        }else if (type == 1)
+        {
+
+            ShutDownAll();
+            GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
+        }
         //Back to main menu
     }
 
@@ -128,8 +136,8 @@ public class UIHandler : MonoBehaviour
 
     public void BackPress()
     {
-        ShutDownAll();
-        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
+
+        confirmPopWnd.show(1);
         // Do something else
     }
 

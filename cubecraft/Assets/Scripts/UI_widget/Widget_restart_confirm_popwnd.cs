@@ -9,7 +9,8 @@ public class Widget_restart_confirm_popwnd : MonoBehaviour {
     public GameObject contentPanel;
     public Button confirmButton;
     public Button cancelButton;
-
+    public Text confirmTxt;
+    private int eventType;
 	// Use this for initialization
 	void Start () {
         confirmButton.onClick.AddListener(processConfirmEvent);
@@ -17,8 +18,19 @@ public class Widget_restart_confirm_popwnd : MonoBehaviour {
 	}
 	
 
-    public void show()
+    public void show(int type)
+
     {
+        switch (type)
+        {
+            case 0:  // for restart Request
+                confirmTxt.text = "Do you want to give up?";
+                break;
+            case 1:
+                confirmTxt.text = "Are you sure to QUIT?";
+                break;
+        }
+        eventType = type;
         confirmPanel.SetActive(true);
     }
 
@@ -33,7 +45,11 @@ public class Widget_restart_confirm_popwnd : MonoBehaviour {
 
     void processConfirmEvent()
     {
-        uiHandler.ConfirmPress();
+      uiHandler.ConfirmPress(eventType); 
+            
+
+       
+       
     }
     void processCancelEvent()
     {
