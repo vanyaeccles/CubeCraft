@@ -157,7 +157,7 @@ public class Widget_four_direction_operation : MonoBehaviour {
 
     void processRightEvent()
     {
-        Debug.Log("dsds");
+        //Debug.Log("dsds");
         uiHandler.moveRight();
         /*
         switch (direction)
