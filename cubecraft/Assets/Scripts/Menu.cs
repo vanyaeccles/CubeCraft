@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour {
-    public GameObject menuholder;
+    public GameObject[] menuholder;
     public GameObject settingmenuholder;
     public Slider[] VolumeSliders;
     public Toggle[] ScreenResolution;
@@ -17,14 +17,20 @@ public class Menu : MonoBehaviour {
     }
     public void settingsmenu()
     {
-        menuholder.SetActive(false);
-        settingmenuholder.SetActive(true);
+        for (int i = 0; i < menuholder.Length; i++)
+        {
+            menuholder[i].SetActive(false);
+            settingmenuholder.SetActive(true);
+        }
     }
 
     public void mainmenu()
     {
-        menuholder.SetActive(true);
-        settingmenuholder.SetActive(false);
+        for (int i = 0; i < menuholder.Length; i++)
+        {
+            menuholder[i].SetActive(true);
+            settingmenuholder.SetActive(false);
+        }
     }
 
     public void setFullscreen(bool isFullscreen)
@@ -48,8 +54,18 @@ public class Menu : MonoBehaviour {
       //  AudioManager.instance.SetVolume(value, AudioManager.AudioChannel.SoundFx);
     }
 
+    public void exitApplication()
+    {
+        Debug.Log("pressed to exit");
+        Application.Quit();
 
-   
+    }
+
+    public void loadStartScene()
+    {
+        GameObject.Find("SceneManager").GetComponent<SceneLoader>().LoadMenuScene();
+    }
+
 
 
 }
